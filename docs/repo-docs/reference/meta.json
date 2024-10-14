@@ -1,0 +1,29 @@
+{
+  "title": "API reference",
+  "pages": [
+    "---Configuration---",
+    "configuration",
+    "package-configurations",
+    "system-environment-variables",
+    "globs",
+    "---Commands---",
+    "run",
+    "watch",
+    "prune",
+    "ls",
+    "generate",
+    "scan",
+    "login",
+    "logout",
+    "link",
+    "unlink",
+    "bin",
+    "telemetry",
+    "---Packages---",
+    "create-titan",
+    "eslint-config-titan",
+    "titan-ignore",
+    "titan-codemod",
+    "titan-gen"
+  ]
+}

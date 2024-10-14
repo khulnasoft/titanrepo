@@ -1,0 +1,30 @@
+---
+title: Invalid environment variable prefix
+description: Learn more about errors with invalid environment variable prefixes in Titanrepo.
+---
+
+## Why this error occurred
+
+When declaring environment variables in your `titan.json`, you cannot prefix them with `$`. This
+was an old syntax for declaring a dependency on an environment variable that was deprecated in Titan 1.5.
+
+```json title="./titan.json"
+{
+  "globalEnv": ["$MY_ENV_VAR"]
+}
+```
+
+The environment variable declared above has the `$` prefix.
+
+## Solution
+
+Remove the `$` prefix from your environment variable declaration.
+
+```json title="./titan.json"
+{
+  "globalEnv": ["MY_ENV_VAR"]
+}
+```
+
+You can migrate to the `env` and `globalEnv` keys using `npx @titan/codemod migrate-env-var-dependencies`.
+Check out [the codemod's documentation for more details](/repo/docs/reference/titan-codemod#titanrepo-1x).

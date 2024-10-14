@@ -1,0 +1,48 @@
+[package]
+name = "titanrepo-cache"
+version = "0.1.0"
+license = "MIT"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+native-tls = ["titanrepo-api-client/native-tls"]
+rustls-tls = ["titanrepo-api-client/rustls-tls"]
+
+
+[dev-dependencies]
+anyhow = { workspace = true, features = ["backtrace"] }
+futures = { workspace = true }
+libc = "0.2.146"
+port_scanner = { workspace = true }
+tempfile = { workspace = true }
+test-case = { workspace = true }
+titanrepo-khulnasoft-api-mock = { workspace = true }
+
+[lints]
+workspace = true
+
+[dependencies]
+base64 = "0.21.0"
+bytes.workspace = true
+camino = { workspace = true }
+futures = { workspace = true }
+hmac = "0.12.1"
+os_str_bytes = "6.5.0"
+path-clean = { workspace = true }
+petgraph = "0.6.3"
+pin-project = "1.1.5"
+reqwest = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+sha2 = { workspace = true }
+tar = "0.4.38"
+thiserror = { workspace = true }
+tokio = { workspace = true, features = ["full"] }
+tokio-stream = "0.1.15"
+tokio-util = { version = "0.7.10", features = ["codec"] }
+tracing = { workspace = true }
+titanpath = { workspace = true }
+titanrepo-analytics = { workspace = true }
+titanrepo-api-client = { workspace = true }
+zstd = "0.12.3"
