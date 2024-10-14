@@ -1,0 +1,154 @@
+[package]
+name = "titanrepo-lib"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[features]
+# Allows configuring a specific tls backend for reqwest.
+# See top level Cargo.toml for more details.
+default = ["rustls-tls", "daemon-package-discovery"]
+native-tls = ["titanrepo-api-client/native-tls", "titan-updater/native-tls"]
+rustls-tls = ["titanrepo-api-client/rustls-tls", "titan-updater/rustls-tls"]
+
+daemon-package-discovery = []
+daemon-file-hashing = []
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[dev-dependencies]
+anyhow = { workspace = true, features = ["backtrace"] }
+assert_cmd = { workspace = true }
+async-stream = "0.3.4"
+itertools = { workspace = true }
+port_scanner = { workspace = true }
+pretty_assertions = { workspace = true }
+tempfile = { workspace = true }
+test-case = { workspace = true }
+tracing-test = { version = "0.2.4", features = ["no-env-filter"] }
+tracing.workspace = true
+titanrepo-khulnasoft-api-mock = { workspace = true }
+
+[lints]
+workspace = true
+
+[dependencies]
+async-graphql = { workspace = true }
+async-graphql-axum = { workspace = true }
+atty = { workspace = true }
+axum = { workspace = true }
+biome_deserialize = { workspace = true }
+biome_deserialize_macros = { workspace = true }
+biome_diagnostics = { workspace = true }
+biome_json_parser = { workspace = true }
+biome_json_syntax = { workspace = true }
+camino = "1.1.4"
+capnp = "0.17.2"
+chrono = { workspace = true, features = ["serde"] }
+clap = { workspace = true, features = ["derive", "env"] }
+clap_complete = { workspace = true }
+command-group = { version = "2.1.0", features = ["with-tokio"] }
+console = { workspace = true }
+const_format = "0.2.30"
+convert_case = "0.6.0"
+crossterm = "0.26"
+ctrlc = { version = "3.4.0", features = ["termination"] }
+derive_setters = { workspace = true }
+dialoguer = { workspace = true, features = ["fuzzy-select"] }
+dirs-next = "2.0.0"
+dunce = { workspace = true }
+either = { workspace = true }
+futures = "0.3.30"
+futures-core = "0.3.30"
+globwalk = { version = "0.1.0", path = "../titanrepo-globwalk" }
+globwatch = { path = "../titanrepo-globwatch" }
+go-parse-duration = "0.1.1"
+hex = "0.4.3"
+human-panic = "1.2.1"
+human_format = "1.1.0"
+humantime = "2.1.0"
+ignore = "0.4.22"
+itertools = { workspace = true }
+jsonc-parser = { version = "0.21.0" }
+lazy_static = { workspace = true }
+libc = "0.2.140"
+merge = { workspace = true }
+miette = { workspace = true, features = ["fancy"] }
+nix = "0.26.2"
+notify = { workspace = true }
+num_cpus = "1.15.0"
+owo-colors = { workspace = true }
+path-clean = "1.0.1"
+petgraph = { workspace = true }
+pidlock = { path = "../titanrepo-pidlock" }
+portable-pty = "0.8.1"
+pprof = { version = "0.12.1", features = [
+  "prost-codec",
+  "frame-pointer",
+], optional = true }
+prost = "0.12.3"
+radix_trie = { workspace = true }
+rand = { workspace = true }
+rayon = "1.7.0"
+regex.workspace = true
+reqwest = { workspace = true, default-features = false, features = ["json"] }
+semver = { workspace = true }
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+serde_yaml = { workspace = true }
+sha2 = { workspace = true }
+shared_child = "1.0.0"
+struct_iterable = "0.1.1"
+svix-ksuid = { version = "0.7.0", features = ["serde"] }
+sysinfo = "0.27.7"
+tabwriter = "1.3.0"
+thiserror = "1.0.38"
+time = "0.3.20"
+tiny-gradient = { workspace = true }
+tokio = { workspace = true, features = ["full", "time"] }
+tokio-stream = { version = "0.1.12", features = ["net"] }
+tokio-util = { version = "0.7.7", features = ["compat"] }
+tonic = { version = "0.11.0", features = ["transport"] }
+tower = "0.4.13"
+tower-http = { version = "0.5.2", features = ["cors"] }
+tracing-appender = "0.2.2"
+tracing-chrome = "0.7.1"
+tracing-subscriber = { version = "0.3.17", features = ["env-filter"] }
+tracing.workspace = true
+titan-trace = { workspace = true }
+titan-updater = { workspace = true }
+titanpath = { workspace = true }
+titanrepo-analytics = { path = "../titanrepo-analytics" }
+titanrepo-api-client = { workspace = true }
+titanrepo-auth = { path = "../titanrepo-auth" }
+titanrepo-cache = { workspace = true }
+titanrepo-ci = { workspace = true }
+titanrepo-dirs = { path = "../titanrepo-dirs" }
+titanrepo-env = { workspace = true }
+titanrepo-errors = { workspace = true }
+titanrepo-filewatch = { path = "../titanrepo-filewatch" }
+titanrepo-fs = { path = "../titanrepo-fs" }
+titanrepo-graph-utils = { path = "../titanrepo-graph-utils" }
+titanrepo-lockfiles = { workspace = true }
+titanrepo-repository = { path = "../titanrepo-repository" }
+titanrepo-scm = { workspace = true }
+titanrepo-telemetry = { path = "../titanrepo-telemetry" }
+titanrepo-ui = { workspace = true }
+titanrepo-unescape = { workspace = true }
+titanrepo-khulnasoft-api = { path = "../titanrepo-khulnasoft-api" }
+twox-hash = "1.6.3"
+uds_windows = "1.0.2"
+wax = { workspace = true }
+webbrowser = { workspace = true }
+which = { workspace = true }
+
+
+[target.'cfg(target_os = "windows")'.dependencies]
+uds_windows = "1.0.2"
+async-io = "1.12.0"
+
+[target.'cfg(target_os = "windows")'.dev-dependencies]
+winapi = "0.3.9"
+
+[build-dependencies]
+capnpc = "0.18.0"
+tonic-build = "0.8.4"

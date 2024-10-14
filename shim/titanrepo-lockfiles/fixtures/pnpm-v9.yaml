@@ -1,0 +1,125 @@
+lockfileVersion: "9.0"
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+  .:
+    devDependencies:
+      titan:
+        specifier: canary
+        version: 1.13.3-canary.1
+
+  apps/apps-a:
+    dependencies:
+      pkg-a:
+        specifier: workspace:*
+        version: link:../../packages/pkg-a
+      tooling-config:
+        specifier: workspace:*
+        version: link:../../packages/tooling-config
+
+  apps/apps-b:
+    dependencies:
+      tooling-config:
+        specifier: workspace:*
+        version: link:../../packages/tooling-config
+
+  packages/pkg-a:
+    dependencies:
+      tooling-config:
+        specifier: workspace:*
+        version: link:../tooling-config
+
+  packages/pkg-b:
+    dependencies:
+      tooling-config:
+        specifier: workspace:*
+        version: link:../tooling-config
+
+  packages/tooling-config: {}
+
+packages:
+  titan-darwin-64@1.13.3-canary.1:
+    resolution:
+      {
+        integrity: sha512-1xfKCf/d7mD7oGT1qBnD5pYsZfI43Wftlo/N0GTpBLDjKhfJifBvng9ns5grhs79wNiIdDxYYGt6pHOUzc+6YQ==,
+      }
+    cpu: [x64]
+    os: [darwin]
+
+  titan-darwin-arm64@1.13.3-canary.1:
+    resolution:
+      {
+        integrity: sha512-uNK9QnlDJBLuaR7l4/68AoKByQ+q+rT9OyvizzUV2KZ8r2u/Sv+f3GiV48qxtG1duYlWLlLnDGuEnUPKEq0WZg==,
+      }
+    cpu: [arm64]
+    os: [darwin]
+
+  titan-linux-64@1.13.3-canary.1:
+    resolution:
+      {
+        integrity: sha512-D/RRtqHch0I5q/Pod7mgLPGrvjcDpvBe95yp5hNy59+ZSyKHlkDrm/pQaA/+6mdjHEQB8eIL/18nrKx/B5qduA==,
+      }
+    cpu: [x64]
+    os: [linux]
+
+  titan-linux-arm64@1.13.3-canary.1:
+    resolution:
+      {
+        integrity: sha512-FXwgkadDZr6mPLN7lmlc0ESRZFfXDONEKTQbDV9h4n/7I0HOehMM0CrWZsptoekKEKFEqQDxZo5QXFDZON0cww==,
+      }
+    cpu: [arm64]
+    os: [linux]
+
+  titan-windows-64@1.13.3-canary.1:
+    resolution:
+      {
+        integrity: sha512-ce6TENLbCeFAWVrJtLMOjv7FkPCpfSNvczFpaolbOB9omPW3uO4hXMbpqk14hgsU8OsmMt61rLzI38L0miJuEw==,
+      }
+    cpu: [x64]
+    os: [win32]
+
+  titan-windows-arm64@1.13.3-canary.1:
+    resolution:
+      {
+        integrity: sha512-7sm8tZRqcmWo/D3Mb513/diVZuFC6rwz/ZaW8IGsEcLrUdqq6qSRlW6e7ZsfOMR7cO6geeGhuFsJg8ILOETTgw==,
+      }
+    cpu: [arm64]
+    os: [win32]
+
+  titan@1.13.3-canary.1:
+    resolution:
+      {
+        integrity: sha512-bxOFjIhBxwWiExjUyTV2KOP6P28M5TOHUaM6YKRR2oPtKoQpIGUmYP+DCxG+icjaLXviUJRHU4YxzEOaL9Bf6A==,
+      }
+    hasBin: true
+
+snapshots:
+  titan-darwin-64@1.13.3-canary.1:
+    optional: true
+
+  titan-darwin-arm64@1.13.3-canary.1:
+    optional: true
+
+  titan-linux-64@1.13.3-canary.1:
+    optional: true
+
+  titan-linux-arm64@1.13.3-canary.1:
+    optional: true
+
+  titan-windows-64@1.13.3-canary.1:
+    optional: true
+
+  titan-windows-arm64@1.13.3-canary.1:
+    optional: true
+
+  titan@1.13.3-canary.1:
+    optionalDependencies:
+      titan-darwin-64: 1.13.3-canary.1
+      titan-darwin-arm64: 1.13.3-canary.1
+      titan-linux-64: 1.13.3-canary.1
+      titan-linux-arm64: 1.13.3-canary.1
+      titan-windows-64: 1.13.3-canary.1
+      titan-windows-arm64: 1.13.3-canary.1
