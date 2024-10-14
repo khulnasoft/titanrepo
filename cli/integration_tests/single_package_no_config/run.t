@@ -6,7 +6,7 @@ Check
   $ ${TITAN} run build --single-package
   \xe2\x80\xa2 Running build (esc)
   \xe2\x80\xa2 Remote caching disabled (esc)
-  build: cache bypass, force executing 31cff621047ffed4
+  build: cache bypass, force executing 983caf383ff15c7a
   build: 
   build: > build
   build: > echo 'building'
@@ -21,7 +21,7 @@ Run a second time, verify no caching because there is no config
   $ ${TITAN} run build --single-package
   \xe2\x80\xa2 Running build (esc)
   \xe2\x80\xa2 Remote caching disabled (esc)
-  build: cache bypass, force executing 31cff621047ffed4
+  build: cache bypass, force executing 983caf383ff15c7a
   build: 
   build: > build
   build: > echo 'building'
