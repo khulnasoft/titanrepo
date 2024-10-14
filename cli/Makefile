@@ -63,7 +63,7 @@ test-go: $(GENERATED_FILES) $(GO_FILES) go.mod go.sum
 # protos need to be compiled before linting, since linting needs to pick up
 # some types from the generated code
 lint-go: $(GENERATED_FILES) $(GO_FILES) go.mod go.sum
-	golangci-lint run --fix
+	golangci-lint run --new-from-rev=main
 
 fmt-go: $(GO_FILES) go.mod go.sum
 	go fmt ./...

@@ -10,7 +10,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-// RepoConfig is a configuration object for the logged-in titanrepo.com user
+// RepoConfig is a configuration object for the logged-in titan.khulnasoft.com user
 type RepoConfig struct {
 	repoViper *viper.Viper
 	path      titanpath.AbsoluteSystemPath

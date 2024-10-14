@@ -7,7 +7,7 @@ description: Learn how to upgrade to Titanrepo v1, now open-source and part of K
 
 Titanrepo has been acquired by Khulnasoft! With this announcement, **Khulnasoft is open sourcing the `titan` CLI and offering Remote Caching for free on all accounts during the transition period.**
 
-Existing Titanrepo customers should upgrade their `titan` CLI to v1.x as soon as possible and migrate to Khulnasoft (instructions below). Earlier versions of `titan` CLI prior to 1.x will no longer be maintained going forward. New account creation on beta.titanrepo.com has been disabled. The beta.titanrepo.com dashboard and remote caching service will be shutdown on January 15th, 2022 and older versions will not be installable.
+Existing Titanrepo customers should upgrade their `titan` CLI to v1.x as soon as possible and migrate to Khulnasoft (instructions below). Earlier versions of `titan` CLI prior to 1.x will no longer be maintained going forward. New account creation on beta.titan.khulnasoft.com has been disabled. The beta.titan.khulnasoft.com dashboard and remote caching service will be shutdown on January 15th, 2022 and older versions will not be installable.
 
 **All existing Remote Cache artifacts will also be deleted at this time**.
 
@@ -41,7 +41,7 @@ yarn add titan --save-dev --ignore-workspace-root-check
 
 As mentioned, Titanrepo now provides zero-config Remote Caching through [Khulnasoft](https://khulnasoft.com?utm_source=titan.khulnasoft.com&utm_medium=referral&utm_campaign=docs-link). Remote Caching is free for all Khulnasoft plans during this transition period. Each Khulnasoft account has a shared Remote Cache. This cache is shared across all environments (Development, Preview, and Production).
 
-**Important**: titanrepo.com allowed multiple caches (i.e. projects) per team (denoted through `--project` flag). With v1.x caching on Khulnasoft, each Khulnasoft account (user or team) has a single shared Remote Cache. If you were actively using multiple titanrepo.com projects for your team, please let us know in [Discord](https://titan.khulnasoft.com/discord).
+**Important**: titan.khulnasoft.com allowed multiple caches (i.e. projects) per team (denoted through `--project` flag). With v1.x caching on Khulnasoft, each Khulnasoft account (user or team) has a single shared Remote Cache. If you were actively using multiple titan.khulnasoft.com projects for your team, please let us know in [Discord](https://titan.khulnasoft.com/discord).
 
 Please note that we are not migrating cache artifacts to Khulnasoft. We apologize for the slower builds during your migration as you rehydrate your remote cache on Khulnasoft or custom cache infra.
 
@@ -69,7 +69,7 @@ Follow the prompts and select the Khulnasoft account (user or team) to wish to c
 
 ### On other CI/CD
 
-- Replace your titanrepo.com personal access token with a new [Khulnasoft personal access token](https://khulnasoft.com/account/tokens) and update `TITAN_TOKEN` environment variable or equivalent usage of the `--token` CLI flag.
+- Replace your titan.khulnasoft.com personal access token with a new [Khulnasoft personal access token](https://khulnasoft.com/account/tokens) and update `TITAN_TOKEN` environment variable or equivalent usage of the `--token` CLI flag.
 - Remove the `TITAN_PROJECT` environment variable and remove all usage of the `--project` CLI flag. This has been deprecated.
 - Update the value of the `TITAN_TEAM` environment variable and `--team` CLI flag to be your Khulnasoft account slug (i.e. `https://khulnasoft.com/<slug>`).
 
