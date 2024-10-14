@@ -1,26 +1,10 @@
-import { DuplicateIcon } from "@heroicons/react/outline";
 import copy from "copy-to-clipboard";
 import Head from "next/head";
-import Image from "next/future/image";
 import Link from "next/link";
 import toast, { Toaster } from "react-hot-toast";
-import edelman from "../../images/edelman.jpeg";
-import elad from "../../images/elad.jpeg";
-import flavio from "../../images/flavio.jpeg";
-import jongold from "../../images/jongold.jpeg";
-import ollermi from "../../images/ollermi.jpeg";
-import shadcn from "../../images/shadcn.jpeg";
-import christian from "../../images/christian.jpeg";
-import yangshunz from "../../images/yangshunz.jpeg";
-import nmoore from "../../images/nmoore.jpeg";
-import joshlarson from "../../images/joshlarson.jpeg";
-import paularmstrong from "../../images/paularmstrong.jpeg";
 
 import { Container } from "../Container";
-import Tweet, { Mention } from "../Tweet";
 import { HomeFeatures } from "../Features";
-import { Marquee } from "../clients/Marquee";
-import { Clients } from "../clients/Clients";
 
 export default function Home() {
   const onClick = () => {
@@ -74,9 +58,6 @@ export default function Home() {
           <p className="pb-8 text-sm font-semibold tracking-wide text-center text-gray-400 uppercase dark:text-gray-500">
             Trusted by teams from around the world
           </p>
-          <Marquee>
-            <Clients />
-          </Marquee>
         </div>
       </div>
 
@@ -132,210 +113,9 @@ export default function Home() {
               development environment, without the maintenance burden.
             </p>
           </div>
-          <div className="flex items-center max-w-2xl py-4 mx-auto space-x-4">
-            <div className="mt-4">
-              <Image
-                src="/images/people/jaredpalmer_headshot.jpeg"
-                height={90}
-                width={90}
-                className="block mr-6 rounded-full"
-                alt="Md Sulaiman"
-              />
-            </div>
-            <div className="flex flex-col h-full space-y-3">
-              <div className="-mb-4 dark:hidden">
-                <Image
-                  src="/images/home/jared_signature_2.png"
-                  height={75}
-                  width={200}
-                  alt="Md Sulaiman"
-                  className="block w-[200px] "
-                />
-              </div>
-              <div className="hidden -mb-4 dark:block">
-                <Image
-                  src="/images/home/jared_signature.png"
-                  height={75}
-                  width={200}
-                  className="block w-[200px] "
-                  alt="Md Sulaiman"
-                />
-              </div>
-              <div className="inline-flex items-center ">
-                <a
-                  href="https://twitter.com/jaredpalmer"
-                  target="_blank"
-                  className="font-bold text-gray-400 no-underline"
-                  rel="noopener noreferrer"
-                >
-                  Md Sulaiman
-                </a>
-                <div className="ml-2 text-gray-500">Founder of Titanrepo</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div className="sm:py-20 lg:py-24">
-        <div className="max-w-4xl px-4 pb-12 mx-auto lg:px-8 ">
-          <h2 className="text-4xl font-extrabold leading-tight tracking-tight lg:text-5xl xl:text-6xl md:text-center dark:text-white">
-            Loved by badass engineers
-          </h2>
-        </div>
-        <div className="grid gap-4 px-4 mx-auto lg:grid-cols-3 max-w-7xl">
-          <div className="space-y-4">
-            <Tweet
-              url="https://twitter.com/jongold/status/1409714159227326466"
-              username="jongold"
-              name="Jon Gold"
-              date="Jun 28"
-              avatar={jongold}
-            >
-              <Mention>@titanrepo</Mention> is the coolest javascript thing
-              i&apos;ve seen probably since an early prototype of Next.js
-              <br />
-              <br />
-              javascript fatigue is over
-            </Tweet>
-            <Tweet
-              url="https://twitter.com/flavioukk/status/1405526268615958530"
-              username="flavioukk"
-              name="Flávio Carvalho"
-              date="Jun 17"
-              avatar={flavio}
-            >
-              <Mention>@titanrepo</Mention> cache hit in CI is the most
-              satisfying thing ever, why hasn&apos;t anyone thought of this
-              before lol
-            </Tweet>
-            <Tweet
-              url="https://twitter.com/shadcn/status/1470269932789125123"
-              username="yangshunz"
-              name="Yangshun Tay"
-              date="Dec 12"
-              avatar={yangshunz}
-            >
-              Experimented with <Mention>@titanrepo</Mention> on my Flow-based
-              4-package monorepo where each package contains lint, test and
-              build commands:
-              <br />
-              <br />
-              - lint, test, build all files in series: ~75s
-              <br />
-              - lerna --parallel: ~62s
-              <br />
-              - titan: ~35s (791ms on cache hit)
-              <br />
-              <br />
-              🤯 Impressive results! FULL TITAN!
-            </Tweet>
-          </div>
-
-          <div className="space-y-4">
-            <Tweet
-              url="https://twitter.com/paularmstrong/status/1386796930479665158"
-              username="paularmstrong"
-              name="Paul Armstrong"
-              date="Apr 26"
-              avatar={paularmstrong}
-            >
-              Just saw <Mention>@titanrepo</Mention> in action and gotta say: it
-              looks amazing!
-            </Tweet>
-
-            <Tweet
-              url="https://twitter.com/edelman215/status/1410388867828654084"
-              username="edelman215"
-              name="Michael Edelman"
-              date="Jun 30"
-              avatar={edelman}
-            >
-              10 runtime-diverse apps, 7 IAC stacks, 6 custom JSII CDK
-              constructs, 5 third-party client wrappers, 2 auto-generated
-              internal api sdks, a handful of utility/misc packages under
-              management, &amp; growing, in 1 monorepo--all in a day&apos;s work
-              for <Mention>@titanrepo</Mention>
-              --no pain, all gain. 😻
-            </Tweet>
-            <Tweet
-              url="https://twitter.com/shadcn/status/1470269932789125123"
-              username="shadcn"
-              name="shadcn"
-              date="Dec 12"
-              avatar={shadcn}
-            >
-              Titanrepo is really good at what it does: Ridiculously fast
-              builds.
-            </Tweet>
-            <Tweet
-              url="https://twitter.com/n_moore/status/1469344866194788355"
-              username="n_moore"
-              name="Nate Moore"
-              date="Dec 10"
-              avatar={nmoore}
-            >
-              Finally! <Mention>@astrodotbuild</Mention> is now using
-              <Mention>@titanrepo</Mention>. ♥️⚡️
-              <br />
-              So glad it&apos;s open source now—congrats to{" "}
-              <Mention>@jaredpalmer</Mention> and <Mention>@khulnasoft</Mention>{" "}
-              on the release!
-            </Tweet>
-          </div>
-          <div className="space-y-4">
-            <Tweet
-              url="https://twitter.com/ollermi/status/1377458483671543810"
-              username="ollermi"
-              name="Miguel Oller"
-              date="Mar 31"
-              avatar={ollermi}
-            >
-              It&apos;s been a joy to use <Mention>@titanrepo</Mention>.{" "}
-              <Mention>@jaredpalmer</Mention> is building something truly
-              wonderful for the JS community
-            </Tweet>
-            <Tweet
-              url="https://twitter.com/elado/status/1377405777506279425"
-              username="elado"
-              name="Elad Ossadon"
-              date="Mar 31"
-              avatar={elad}
-            >
-              If you build for web, leave everything and go see what{" "}
-              <Mention>@jaredpalmer</Mention> is doing with{" "}
-              <Mention>@titanrepo</Mention>. One of the most exciting pieces of
-              tech lately! The hype is real
-            </Tweet>
-
-            <Tweet
-              url="https://twitter.com/christianjuth/status/1469494057843847169"
-              username="christianjuth"
-              name="Christian 👨🏼‍💻"
-              date="Dec 10"
-              avatar={christian}
-            >
-              Holy wow, I just rewrote my entire Lerna monorepo to use Titanrepo
-              and SWC, and it took me like maybe 20 minutes. This is insane.
-              Literally, everything Khulnasoft has backed/acquired/created makes
-              development a little easier. But wow, it just blew my mind how
-              easy this all is to use.
-            </Tweet>
-            <Tweet
-              url="https://twitter.com/jplhomer/status/1494080248845062154"
-              username="jplhomer"
-              name="Josh Larson"
-              date="Feb 16"
-              avatar={joshlarson}
-            >
-              <>
-                Living that <Mention>@titanrepo</Mention> life{" "}
-                <span role="img" aria-label="Smiling face with sunglasses">
-                  😎
-                </span>
-              </>
-            </Tweet>
-          </div>
-        </div>
         <Container>
           <div className="px-4 py-16 mx-auto mt-10 sm:max-w-none sm:flex sm:justify-center">
             <div className="space-y-4 sm:space-y-0 sm:mx-auto ">
