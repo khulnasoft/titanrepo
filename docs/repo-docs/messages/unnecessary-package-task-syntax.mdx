@@ -1,0 +1,40 @@
+---
+title: Unnecessary package task syntax error
+description: Learn more about errors with unnecessary package task syntax in Titanrepo.
+---
+
+## Why this error occurred
+
+Titanrepo supports adding additional `titan.json` files in a package directory
+to override the `titan.json` file declared at the repository root, a feature called [Workspace Configurations](/repo/docs/crafting-your-repository/structuring-a-repository#specifying-packages-in-a-monorepo).
+In those additional `titan.json` files, you can only configure tasks for that specific
+package. Therefore, only the task name should be included in the task,
+not the package and task name (`package#task`).
+
+`titan.json` file in `apps/web` directory:
+
+```json title="./titan.json"
+{
+  "tasks": {
+    "web#build": {
+      "dependsOn": ["lint"]
+    }
+  }
+}
+```
+
+Since this `titan.json` file is inside a package directory, the `web` prefix is unnecessary.
+
+## Solution
+
+Remove the package prefix from the task name:
+
+```json title="./titan.json"
+{
+  "tasks": {
+    "build": {
+      "dependsOn": ["lint"]
+    }
+  }
+}
+```
