@@ -1,0 +1,26 @@
+{
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "prisma": {
+    "schema": "packages/database/prisma/schema.prisma",
+    "seed": "tsx packages/database/src/seed.ts"
+  },
+  "scripts": {
+    "build": "titan run build",
+    "db:migrate:deploy": "titan run db:migrate:deploy",
+    "db:push": "titan run db:push",
+    "db:seed": "titan run db:seed",
+    "dev": "titan run dev --parallel",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "generate": "titan run generate",
+    "lint": "titan run lint"
+  },
+  "devDependencies": {
+    "prettier": "^2.5.1",
+    "tsx": "^3.7.1",
+    "titan": "latest"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "name": "eslint-plugin-titan",
+  "version": "0.0.4",
+  "description": "ESLint plugin for Titanrepo",
+  "keywords": [
+    "titan",
+    "eslint",
+    "titanrepo",
+    "eslintplugin",
+    "eslint-plugin"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khulnasoft/titanrepo",
+    "directory": "packages/eslint-plugin-titan"
+  },
+  "bugs": {
+    "url": "https://github.com/khulnasoft/titanrepo/issues"
+  },
+  "author": "Khulnasoft",
+  "main": "./dist/index.js",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "release": "pnpm build && pnpm publish",
+    "test": "jest",
+    "build": "tsup",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/eslint": "^8.4.5",
+    "@types/estree": "^1.0.0",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^16.11.12",
+    "jest": "^27.4.3",
+    "ts-jest": "^27.1.1",
+    "tsconfig": "workspace:*",
+    "tsup": "^6.2.0",
+    "titan-utils": "workspace:*",
+    "titan-types": "workspace:*",
+    "typescript": "^4.7.4"
+  },
+  "peerDependencies": {
+    "eslint": "^7.23.0 || ^8.0.0"
+  },
+  "license": "MPL-2.0"
+}

@@ -1,0 +1,23 @@
+{
+  "name": "titanrepo-basic-shared",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "titan run build",
+    "dev": "titan run dev --parallel",
+    "lint": "titan run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+  },
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "prettier": "latest",
+    "titan": "latest"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

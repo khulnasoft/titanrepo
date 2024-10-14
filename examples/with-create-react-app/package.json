@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "titan run build",
+    "clean": "titan run clean",
+    "dev": "titan run dev --no-cache --parallel --continue",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "titan run lint",
+    "test": "titan run test"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.1",
+    "prettier": "^2.5.1",
+    "titan": "latest"
+  }
+}

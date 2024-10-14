@@ -1,0 +1,32 @@
+{
+  "name": "eslint-config-titan",
+  "version": "0.0.4",
+  "description": "ESLint config for Titanrepo",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/khulnasoft/titanrepo",
+    "directory": "packages/eslint-config-titan"
+  },
+  "bugs": {
+    "url": "https://github.com/khulnasoft/titanrepo/issues"
+  },
+  "keywords": [
+    "titan",
+    "eslint",
+    "titanrepo",
+    "eslintconfig",
+    "eslint-config"
+  ],
+  "main": "index.js",
+  "author": "Khulnasoft",
+  "dependencies": {
+    "eslint-plugin-titan": "workspace:*"
+  },
+  "peerDependencies": {
+    "eslint": "^7.23.0 || ^8.0.0"
+  },
+  "license": "MPL-2.0",
+  "devDependencies": {
+    "@types/eslint": "^8.4.5"
+  }
+}

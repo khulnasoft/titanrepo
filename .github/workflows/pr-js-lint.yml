@@ -1,0 +1,33 @@
+name: JS Package Linter
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  lint:
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    env:
+      TITAN_TOKEN: ${{ secrets.TITAN_TOKEN }}
+      TITAN_TEAM: ${{ secrets.TITAN_TEAM }}
+      TITAN_REMOTE_ONLY: true
+
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/setup-node
+      - uses: ./.github/actions/setup-go
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Lint
+        run: pnpm -- titan run lint --filter=!cli
+
+      - name: Check types
+        run: pnpm -- titan run check-types --filter=!cli

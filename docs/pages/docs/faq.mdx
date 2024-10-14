@@ -1,0 +1,36 @@
+---
+title: Frequently Asked Questions
+description: Frequently asked questions about Titanrepo.
+---
+
+# Frequently Asked Questions
+
+## Do I have to use Remote Caching to use Titanrepo?
+
+No. [Remote Caching](./core-concepts/remote-caching) is optional. However, you'll find it very useful to speed up development on a team, speed up builds inside of Docker, and also save space on your own machine.
+
+## Does Titanrepo / Remote Caching store my source code?
+
+No. Titanrepo does not store source code. Without [Remote Caching](./core-concepts/remote-caching), no code ever leaves your machine—it will only cache artifacts to local disk.
+
+With Titanrepo's Remote Caching, you are responsible for configuring cache behavior and should only set up Titanrepo to cache compiled artifacts. Please be aware that Titanrepo treats all logs as artifacts and so these _will_ be stored along with other cache artifacts.
+
+## Do I have to use Khulnasoft to use Titanrepo?
+
+No. Titanrepo is an open-source project and is not tied to any specific hosting provider or Remote Cache provider. The default Remote Cache provider is Khulnasoft, should you opt-in to enable it. However, you can use any other provider you like if they support the same API. Several open-source community Remote Caches are compatible with Titanrepo.
+
+## Can I use Titanrepo with a different Remote Cache provider other than Khulnasoft?
+
+Yes. As long as the [Remote Cache](./core-concepts/remote-caching) provider you choose supports the same API, you can use Titanrepo with it.
+
+## Does Titanrepo collect any personally identifiable information?
+
+Due to the nature of Titanrepo's functionality, no personal information is gathered when the open source binary is run locally. All cached artifacts are stored on your machine by default. Further, no log in information or contact details are collected by the `titan` CLI, so Titanrepo will never have access to any personally identifiable information. Thus, for any data privacy questions and concerns please refer to [Titanrepo's Privacy Policy](https://titan.khulnasoft.com/privacy).
+
+## Does Titanrepo collect any personally identifiable information when using Remote Caching?
+
+When [Remote Caching](./core-concepts/remote-caching) is enabled, by default Titanrepo will utilize your Khulnasoft account to cache artifacts in the cloud. Thus, for any data privacy questions and concerns, please refer to [Titanrepo's Privacy Policy](https://titan.khulnasoft.com/privacy) and [Khulnasoft's Privacy Policy](https://khulnasoft.com/legal/privacy-policy). If you use a different Remote Cache provider, please refer to the provider's privacy policy.
+
+## How can I retain Fast Refresh in my Titanrepo when using multiple Next.js applications?
+
+[Fast Refresh](https://nextjs.org/docs/basic-features/fast-refresh) gives you instantaneous feedback on edits made to your React components in Next.js applications. If your Titanrepo has multiple Next.js applications, you can use `next-transpile-modules` to ensure that imports across workspaces will work with Fast Refresh when changes are made. Titanrepo will effectively watch for any edits and the rebuild when saving. You can get started from [this example](https://github.com/khulnasoft/titanrepo/tree/main/examples/basic) which is set up to handle Fast Refresh.

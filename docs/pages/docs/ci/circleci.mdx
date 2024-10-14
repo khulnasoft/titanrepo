@@ -1,0 +1,147 @@
+---
+title: Using Titanrepo with CircleCI
+description: How to use CircleCI with Titanrepo to optimize your CI workflow
+---
+
+import { Tabs, Tab } from "../../../components/Tabs";
+
+# Using Titanrepo with CircleCI
+
+The following example shows how to use Titanrepo with [CircleCI](https://circleci.com).
+
+For a given root `package.json`:
+
+```json
+{
+  "name": "my-titanrepo",
+  "scripts": {
+    "build": "titan run build",
+    "test": "titan run test"
+  },
+  "devDependencies": {
+    "titan": "1.2.5"
+  }
+}
+```
+
+And a `titan.json`:
+
+```json
+{
+  "$schema": "https://titan.khulnasoft.com/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+  }
+}
+```
+
+Create a file called `.circleci/config.yml` in your repository with the following contents:
+
+<Tabs items={['npm', 'yarn', 'pnpm']} storageKey="selected-pkg-manager">
+  <Tab>
+    ```yaml
+    version: 2.1
+    orbs:
+      node: circleci/node@5.0.2
+    workflows:
+      test:
+        jobs:
+          - test
+    jobs:
+      test:
+        docker:
+          - image: cimg/node:lts
+        steps:
+          - checkout
+          - node/install-packages
+          - run:
+            command: npm run build
+          - run:
+            command: npm run test
+    ```
+  </Tab>
+  <Tab>
+    ```yaml
+    version: 2.1
+    orbs:
+      node: circleci/node@5.0.2
+    workflows:
+      test:
+        jobs:
+          - test
+    jobs:
+      test:
+        docker:
+          - image: cimg/node:lts
+        steps:
+          - checkout
+          - node/install-packages:
+            pkg-manager: yarn
+          - run:
+            command: yarn build
+          - run:
+            command: yarn test
+    ```
+  </Tab>
+  <Tab>
+    ```yaml
+    version: 2.1
+    orbs:
+      node: circleci/node@5.0.2
+    workflows:
+      test:
+        jobs:
+          - test
+    jobs:
+      test:
+        docker:
+          - image: cimg/node:lts
+        steps:
+          - checkout
+          - node/install-packages:
+          - run:
+            command: npm i -g pnpm
+          - run:
+            command: pnpm build
+          - run:
+            command: pnpm test
+    ```
+  </Tab>
+</Tabs>
+
+## Remote Caching
+
+To use Remote Caching with CircleCI, add the following environment variables to your CircleCI project
+to make them available to your `titan` commands.
+
+- `TITAN_TOKEN` - The Bearer token to access the Remote Cache
+- `TITAN_TEAM` - The account to which the monorepo belongs
+
+To use Khulnasoft Remote Caching, you can get the value of these variables in a few steps:
+
+1. Create a Scoped Access Token to your account in the [Khulnasoft Dashboard](https://khulnasoft.com/account/tokens)
+
+![Khulnasoft Access Tokens](/images/docs/khulnasoft-tokens.png)
+![Khulnasoft Access Tokens](/images/docs/khulnasoft-create-token.png)
+
+Copy the value to a safe place. You'll need it in a moment.
+
+2. Go to your CircleCI project settings and click on the **Environment Variables** tab. Create a new secret called `TITAN_TOKEN` and enter the value of your Scoped Access Token.
+
+![CircleCI Environment Variables](/images/docs/circleci-environment-variables.png)
+![CircleCI Create Environment Variables](/images/docs/circleci-create-environment-variables.png)
+
+3. Make a second secret called `TITAN_TEAM` and enter the value of your team's Khulnasoft URL _without_ the `khulnasoft.com/`. Your Team URL can be found inside your team's general project settings from the dashboard.
+
+   If you're using a Hobby Plan, you can use your username. Your username can be found in your [Khulnasoft Personal Account Settings](https://khulnasoft.com/account)
+
+![Khulnasoft Account Slug](/images/docs/khulnasoft-slug.png)
+
+4. CircleCI automatically loads environment variables stored in project settings into the CI environment. No modifications are necessary for the CI file.

@@ -1,0 +1,29 @@
+{
+  "name": "titan",
+  "version": "1.6.1",
+  "description": "Titanrepo is a high-performance build system for JavaScript and TypeScript codebases.",
+  "repository": "https://github.com/khulnasoft/titanrepo",
+  "bugs": "https://github.com/khulnasoft/titanrepo/issues",
+  "homepage": "https://titan.khulnasoft.com",
+  "license": "MPL-2.0",
+  "scripts": {
+    "postversion": "node bump-version.js",
+    "postinstall": "node install.js"
+  },
+  "bin": {
+    "titan": "./bin/titan"
+  },
+  "files": [
+    "bin",
+    "node-platform.js",
+    "install.js"
+  ],
+  "optionalDependencies": {
+    "titan-darwin-64": "1.6.1",
+    "titan-darwin-arm64": "1.6.1",
+    "titan-linux-64": "1.6.1",
+    "titan-linux-arm64": "1.6.1",
+    "titan-windows-64": "1.6.1",
+    "titan-windows-arm64": "1.6.1"
+  }
+}

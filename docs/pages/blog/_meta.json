@@ -1,0 +1,21 @@
+{
+  "*": {
+    "//": "Hide all the links from the sidebar or navbar, and disable ToC and Sidebar for these pages.",
+    "hidden": true,
+    "theme": {
+      "toc": false,
+      "sidebar": false,
+      "typesetting": "article"
+    }
+  },
+  "titan-1-6-0": "Titanrepo 1.6",
+  "titan-1-5-0": "Titanrepo 1.5",
+  "titan-1-4-0": "Titanrepo 1.4",
+  "titan-1-3-0": "Titanrepo 1.3",
+  "titan-1-2-0": "Titanrepo 1.2",
+  "titan-1-1-0": "Titanrepo 1.1",
+  "joining-khulnasoft": "Joining Khulnasoft",
+  "saml-sso-now-available": "SAML SSO now available",
+  "you-might-not-need-typescript-project-references": "You might not need TypeScript project references",
+  "titan-0-4-0": "Titanrepo 0.4.0"
+}

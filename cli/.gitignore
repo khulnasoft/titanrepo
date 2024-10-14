@@ -1,0 +1,16 @@
+/internal/titandprotocol/*.go
+
+/demo/
+/dist/
+/dist-*
+
+# Built binaries.
+/titan
+/titan-new
+/titan-new.exe
+/titan.exe
+
+/scripts/titan-*
+/.cram_env
+testbed
+integration_tests/**/*.t.err

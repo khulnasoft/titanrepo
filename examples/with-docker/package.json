@@ -1,0 +1,28 @@
+{
+  "name": "with-docker",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "titan run build",
+    "clean": "titan run clean",
+    "dev": "titan run dev --parallel",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "titan run lint",
+    "test": "titan run test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint-config-custom": "*",
+    "prettier": "latest",
+    "titan": "latest"
+  },
+  "packageManager": "yarn@1.22.15",
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=7.0.0"
+  }
+}

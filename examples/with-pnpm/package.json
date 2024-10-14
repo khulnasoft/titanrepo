@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "titan run build",
+    "dev": "titan run dev --parallel",
+    "lint": "titan run lint"
+  },
+  "devDependencies": {
+    "eslint-config-custom": "workspace:*",
+    "eslint": "7.32.0",
+    "prettier": "^2.5.1",
+    "titan": "latest"
+  }
+}

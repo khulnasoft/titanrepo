@@ -1,0 +1,138 @@
+---
+title: Using Titanrepo with GitLab CI
+description: How to use GitLab CI with Titanrepo to optimize your CI workflow
+---
+
+import { Tabs, Tab } from "../../../components/Tabs";
+
+# Using Titanrepo with GitLab CI
+
+The following example shows how to use Titanrepo with [GitLab CI](https://docs.gitlab.com/ee/ci/).
+
+For a given root `package.json`:
+
+```json
+{
+  "name": "my-titanrepo",
+  "scripts": {
+    "build": "titan run build",
+    "test": "titan run test"
+  },
+  "devDependencies": {
+    "titan": "1.2.5"
+  }
+}
+```
+
+And a `titan.json`:
+
+```json
+{
+  "$schema": "https://titan.khulnasoft.com/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+  }
+}
+```
+
+Create a file called `.gitlab-ci.yml` in your repository with the following contents:
+
+<Tabs items={['npm', 'yarn', 'pnpm']} storageKey="selected-pkg-manager">
+    <Tab>
+        ```yaml
+        image: node:latest
+        # To use Remote Caching, uncomment the next lines and follow the steps below.
+        # variables:
+        #   TITAN_TOKEN: $TITAN_TOKEN
+        #   TITAN_TEAM: $TITAN_TEAM
+        stages:
+          - build
+        build:
+          stage: build
+          script:
+            - npm install
+            - npm run build
+            - npm run test
+        ```
+    </Tab>
+    <Tab>
+        ```yaml
+        image: node:latest
+        # To use Remote Caching, uncomment the next lines and follow the steps below.
+        # variables:
+        #   TITAN_TOKEN: $TITAN_TOKEN
+        #   TITAN_TEAM: $TITAN_TEAM
+        stages:
+          - build
+        build:
+          stage: build
+          script:
+            - yarn install
+            - yarn build
+            - yarn test
+          cache:
+            paths:
+              - node_modules/
+              - .yarn
+        ```
+    </Tab>
+    <Tab>
+        ```yaml
+        image: node:latest
+        # To use Remote Caching, uncomment the next lines and follow the steps below.
+        # variables:
+        #   TITAN_TOKEN: $TITAN_TOKEN
+        #   TITAN_TEAM: $TITAN_TEAM
+        stages:
+          - build
+        build:
+          stage: build
+          before_script:
+            - curl -f https://get.pnpm.io/v6.16.js | node - add --global pnpm@6.32.2
+            - pnpm config set store-dir .pnpm-store
+          script:
+            - pnpm install
+            - pnpm build
+            - pnpm test
+          cache:
+            key: "$CI_COMMIT_REF_SLUG"
+            paths:
+              - .pnpm-store
+        ```
+        > For more information visit the pnpm documenation section on GitLab CI integration, view it [here](https://pnpm.io/continuous-integration#gitlab)
+    </Tab>
+</Tabs>
+
+## Remote Caching
+
+To use Remote Caching with GitLab CI, add the following environment variables to your GitLab CI project.
+
+- `TITAN_TOKEN` - The Bearer token to access the Remote Cache
+- `TITAN_TEAM` - The account to which the monorepo belongs
+
+To use Khulnasoft Remote Caching, you can get the value of these variables in a few steps:
+
+1. Create a Scoped Access Token to your account in the [Khulnasoft Dashboard](https://khulnasoft.com/account/tokens)
+
+![Khulnasoft Access Tokens](/images/docs/khulnasoft-tokens.png)
+![Khulnasoft Access Tokens](/images/docs/khulnasoft-create-token.png)
+
+Copy the value to a safe place. You'll need it in a moment.
+
+2. Go to your GitLab repository settings and click on the **Settings** and then **CI/CD** tab. Create a new variable called `TITAN_TOKEN` and enter the value of your Scoped Access Token.
+
+![GitLab CI Variables](/images/docs/gitlab-ci-variables.png)
+![GitLab CI Create Variable](/images/docs/gitlab-ci-create-variable.png)
+
+3. Make a second secret called `TITAN_TEAM` and enter the value of your team's Khulnasoft URL _without_ the `khulnasoft.com/`. Your Team URL can be found inside your team's general project settings from the dashboard.
+
+   If you're using a Hobby Plan, you can use your username. Your username can be found in your [Khulnasoft Personal Account Settings](https://khulnasoft.com/account)
+
+![Khulnasoft Account Slug](/images/docs/khulnasoft-slug.png)

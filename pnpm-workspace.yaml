@@ -1,0 +1,7 @@
+packages:
+  - "docs"
+  - "cli"
+  - "packages/*"
+  - "benchmark"
+  # Intentionally exclude the `npm` `titan` package from the workspaces.
+  - "!packages/titan"
