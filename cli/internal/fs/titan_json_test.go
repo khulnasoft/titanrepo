@@ -26,7 +26,7 @@ func assertIsSorted(t *testing.T, arr []string, msg string) {
 	}
 }
 
-func Test_ReadTurboConfig(t *testing.T) {
+func Test_ReadTitanConfig(t *testing.T) {
 	testDir := getTestDir(t, "correct")
 
 	packageJSONPath := testDir.UntypedJoin("package.json")
@@ -36,7 +36,7 @@ func Test_ReadTurboConfig(t *testing.T) {
 		t.Fatalf("invalid parse: %#v", pkgJSONReadErr)
 	}
 
-	titanJSON, titanJSONReadErr := ReadTurboConfig(testDir, rootPackageJSON)
+	titanJSON, titanJSONReadErr := ReadTitanConfig(testDir, rootPackageJSON)
 
 	if titanJSONReadErr != nil {
 		t.Fatalf("invalid parse: %#v", titanJSONReadErr)
@@ -84,7 +84,7 @@ func Test_ReadTurboConfig(t *testing.T) {
 	assert.EqualValues(t, remoteCacheOptionsExpected, titanJSON.RemoteCacheOptions)
 }
 
-func Test_ReadTurboConfig_Legacy(t *testing.T) {
+func Test_ReadTitanConfig_Legacy(t *testing.T) {
 	testDir := getTestDir(t, "legacy-only")
 
 	packageJSONPath := testDir.UntypedJoin("package.json")
@@ -94,7 +94,7 @@ func Test_ReadTurboConfig_Legacy(t *testing.T) {
 		t.Fatalf("invalid parse: %#v", pkgJSONReadErr)
 	}
 
-	titanJSON, titanJSONReadErr := ReadTurboConfig(testDir, rootPackageJSON)
+	titanJSON, titanJSONReadErr := ReadTitanConfig(testDir, rootPackageJSON)
 
 	if titanJSONReadErr != nil {
 		t.Fatalf("invalid parse: %#v", titanJSONReadErr)
@@ -115,7 +115,7 @@ func Test_ReadTurboConfig_Legacy(t *testing.T) {
 	assert.Empty(t, titanJSON.RemoteCacheOptions)
 }
 
-func Test_ReadTurboConfig_BothCorrectAndLegacy(t *testing.T) {
+func Test_ReadTitanConfig_BothCorrectAndLegacy(t *testing.T) {
 	testDir := getTestDir(t, "both")
 
 	packageJSONPath := testDir.UntypedJoin("package.json")
@@ -125,7 +125,7 @@ func Test_ReadTurboConfig_BothCorrectAndLegacy(t *testing.T) {
 		t.Fatalf("invalid parse: %#v", pkgJSONReadErr)
 	}
 
-	titanJSON, titanJSONReadErr := ReadTurboConfig(testDir, rootPackageJSON)
+	titanJSON, titanJSONReadErr := ReadTitanConfig(testDir, rootPackageJSON)
 
 	if titanJSONReadErr != nil {
 		t.Fatalf("invalid parse: %#v", titanJSONReadErr)
@@ -147,10 +147,10 @@ func Test_ReadTurboConfig_BothCorrectAndLegacy(t *testing.T) {
 	remoteCacheOptionsExpected := RemoteCacheOptions{"team_id", true}
 	assert.EqualValues(t, remoteCacheOptionsExpected, titanJSON.RemoteCacheOptions)
 
-	assert.Equal(t, rootPackageJSON.LegacyTurboConfig == nil, true)
+	assert.Equal(t, rootPackageJSON.LegacyTitanConfig == nil, true)
 }
 
-func Test_ReadTurboConfig_InvalidEnvDeclarations1(t *testing.T) {
+func Test_ReadTitanConfig_InvalidEnvDeclarations1(t *testing.T) {
 	testDir := getTestDir(t, "invalid-env-1")
 
 	packageJSONPath := testDir.UntypedJoin("package.json")
@@ -160,14 +160,14 @@ func Test_ReadTurboConfig_InvalidEnvDeclarations1(t *testing.T) {
 		t.Fatalf("invalid parse: %#v", pkgJSONReadErr)
 	}
 
-	_, titanJSONReadErr := ReadTurboConfig(testDir, rootPackageJSON)
+	_, titanJSONReadErr := ReadTitanConfig(testDir, rootPackageJSON)
 
 	expectedErrorMsg := "titan.json: You specified \"$A\" in the \"env\" key. You should not prefix your environment variables with \"$\""
 
 	assert.EqualErrorf(t, titanJSONReadErr, expectedErrorMsg, "Error should be: %v, got: %v", expectedErrorMsg, titanJSONReadErr)
 }
 
-func Test_ReadTurboConfig_InvalidEnvDeclarations2(t *testing.T) {
+func Test_ReadTitanConfig_InvalidEnvDeclarations2(t *testing.T) {
 	testDir := getTestDir(t, "invalid-env-2")
 
 	packageJSONPath := testDir.UntypedJoin("package.json")
@@ -177,14 +177,14 @@ func Test_ReadTurboConfig_InvalidEnvDeclarations2(t *testing.T) {
 		t.Fatalf("invalid parse: %#v", pkgJSONReadErr)
 	}
 
-	_, titanJSONReadErr := ReadTurboConfig(testDir, rootPackageJSON)
+	_, titanJSONReadErr := ReadTitanConfig(testDir, rootPackageJSON)
 
 	expectedErrorMsg := "titan.json: You specified \"$A\" in the \"env\" key. You should not prefix your environment variables with \"$\""
 
 	assert.EqualErrorf(t, titanJSONReadErr, expectedErrorMsg, "Error should be: %v, got: %v", expectedErrorMsg, titanJSONReadErr)
 }
 
-func Test_ReadTurboConfig_InvalidGlobalEnvDeclarations(t *testing.T) {
+func Test_ReadTitanConfig_InvalidGlobalEnvDeclarations(t *testing.T) {
 	testDir := getTestDir(t, "invalid-global-env")
 
 	packageJSONPath := testDir.UntypedJoin("package.json")
@@ -194,14 +194,14 @@ func Test_ReadTurboConfig_InvalidGlobalEnvDeclarations(t *testing.T) {
 		t.Fatalf("invalid parse: %#v", pkgJSONReadErr)
 	}
 
-	_, titanJSONReadErr := ReadTurboConfig(testDir, rootPackageJSON)
+	_, titanJSONReadErr := ReadTitanConfig(testDir, rootPackageJSON)
 
 	expectedErrorMsg := "titan.json: You specified \"$QUX\" in the \"env\" key. You should not prefix your environment variables with \"$\""
 
 	assert.EqualErrorf(t, titanJSONReadErr, expectedErrorMsg, "Error should be: %v, got: %v", expectedErrorMsg, titanJSONReadErr)
 }
 
-func Test_ReadTurboConfig_EnvDeclarations(t *testing.T) {
+func Test_ReadTitanConfig_EnvDeclarations(t *testing.T) {
 	testDir := getTestDir(t, "legacy-env")
 
 	packageJSONPath := testDir.UntypedJoin("package.json")
@@ -211,7 +211,7 @@ func Test_ReadTurboConfig_EnvDeclarations(t *testing.T) {
 		t.Fatalf("invalid parse: %#v", pkgJSONReadErr)
 	}
 
-	titanJSON, titanJSONReadErr := ReadTurboConfig(testDir, rootPackageJSON)
+	titanJSON, titanJSONReadErr := ReadTitanConfig(testDir, rootPackageJSON)
 
 	if titanJSONReadErr != nil {
 		t.Fatalf("invalid parse: %#v", titanJSONReadErr)
@@ -235,7 +235,7 @@ func Test_ReadTurboConfig_EnvDeclarations(t *testing.T) {
 }
 
 // Helpers
-func validateOutput(t *testing.T, titanJSON *TurboJSON, expectedPipeline map[string]TaskDefinition) {
+func validateOutput(t *testing.T, titanJSON *TitanJSON, expectedPipeline map[string]TaskDefinition) {
 	t.Helper()
 	assertIsSorted(t, titanJSON.GlobalDeps, "Global Deps")
 	assertIsSorted(t, titanJSON.GlobalEnv, "Global Env")

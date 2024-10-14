@@ -67,8 +67,8 @@ func InferRoot(directory titanpath.AbsoluteSystemPath) (titanpath.AbsoluteSystem
 	//       i. If we are one of the workspaces, directory + multi. (This could be changed in the future.)
 	//       ii. If we're not one of the workspaces, nearestPackageJson + single.
 
-	nearestTurboJSON, findTurboJSONErr := directory.Findup("titan.json")
-	if nearestTurboJSON == "" || findTurboJSONErr != nil {
+	nearestTitanJSON, findTitanJSONErr := directory.Findup("titan.json")
+	if nearestTitanJSON == "" || findTitanJSONErr != nil {
 		// We didn't find a titan.json. We're in situation 2 or 3.
 
 		// Unroll the first loop for Scenario 2
@@ -128,19 +128,19 @@ func InferRoot(directory titanpath.AbsoluteSystemPath) (titanpath.AbsoluteSystem
 		}
 	} else {
 		// If there is no sibling package.json we do no inference.
-		siblingPackageJSONPath := nearestTurboJSON.Dir().UntypedJoin("package.json")
+		siblingPackageJSONPath := nearestTitanJSON.Dir().UntypedJoin("package.json")
 		if !siblingPackageJSONPath.Exists() {
 			// We do no inference.
 			// Scenario 0
 			return directory, Multi
 		}
 
-		if candidateDirectoryWorkspaceGlobs(nearestTurboJSON.Dir()) != nil {
+		if candidateDirectoryWorkspaceGlobs(nearestTitanJSON.Dir()) != nil {
 			// Scenario 1A.
-			return nearestTurboJSON.Dir(), Multi
+			return nearestTitanJSON.Dir(), Multi
 		}
 
 		// Scenario 1B.
-		return nearestTurboJSON.Dir(), Single
+		return nearestTitanJSON.Dir(), Single
 	}
 }

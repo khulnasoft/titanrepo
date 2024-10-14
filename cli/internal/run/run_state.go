@@ -141,14 +141,14 @@ func (r *RunState) Close(terminal cli.Ui, filename string) error {
 		terminal.Error(fmt.Sprintf("Error writing tracing data: %v", err))
 	}
 
-	maybeFullTurbo := ""
+	maybeFullTitan := ""
 	if r.Cached == r.Attempted && r.Attempted > 0 {
-		maybeFullTurbo = ui.Rainbow(">>> FULL TITAN")
+		maybeFullTitan = ui.Rainbow(">>> FULL TITAN")
 	}
 	terminal.Output("") // Clear the line
 	terminal.Output(util.Sprintf("${BOLD} Tasks:${BOLD_GREEN}    %v successful${RESET}${GRAY}, %v total${RESET}", r.Cached+r.Success, r.Attempted))
 	terminal.Output(util.Sprintf("${BOLD}Cached:    %v cached${RESET}${GRAY}, %v total${RESET}", r.Cached, r.Attempted))
-	terminal.Output(util.Sprintf("${BOLD}  Time:    %v${RESET} %v${RESET}", time.Since(r.startedAt).Truncate(time.Millisecond), maybeFullTurbo))
+	terminal.Output(util.Sprintf("${BOLD}  Time:    %v${RESET} %v${RESET}", time.Since(r.startedAt).Truncate(time.Millisecond), maybeFullTitan))
 	terminal.Output("")
 	return nil
 }

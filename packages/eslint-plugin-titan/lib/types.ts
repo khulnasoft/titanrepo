@@ -4,7 +4,7 @@ export interface Pipeline {
   inputs?: Array<string>;
 }
 
-export interface TurboConfig {
+export interface TitanConfig {
   globalDependencies?: Array<string>;
   pipeline?: Record<string, Pipeline>;
 }

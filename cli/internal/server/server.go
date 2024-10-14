@@ -17,14 +17,14 @@ import (
 	status "google.golang.org/grpc/status"
 )
 
-// Server implements the GRPC serverside of TurbodServer
+// Server implements the GRPC serverside of TitandServer
 // Note for the future: we don't yet make use of titan.json
 // or the package graph in the server. Once we do, we may need a
 // layer of indirection between "the thing that responds to grpc requests"
 // and "the thing that holds our persistent data structures" to handle
 // changes in the underlying configuration.
 type Server struct {
-	titandprotocol.UnimplementedTurbodServer
+	titandprotocol.UnimplementedTitandServer
 	watcher      *filewatcher.FileWatcher
 	globWatcher  *globwatcher.GlobWatcher
 	titanVersion string
@@ -64,7 +64,7 @@ var _defaultCookieTimeout = 500 * time.Millisecond
 
 // New returns a new instance of Server
 func New(serverName string, logger hclog.Logger, repoRoot titanpath.AbsoluteSystemPath, titanVersion string, logFilePath titanpath.AbsoluteSystemPath) (*Server, error) {
-	cookieDir := fs.GetTurboDataDir().UntypedJoin("cookies", serverName)
+	cookieDir := fs.GetTitanDataDir().UntypedJoin("cookies", serverName)
 	cookieJar, err := filewatcher.NewCookieJar(cookieDir, _defaultCookieTimeout)
 	if err != nil {
 		return nil, err
@@ -132,7 +132,7 @@ func (s *Server) Register(grpcServer GRPCServer) {
 		grpcServer: grpcServer,
 	}
 	s.closerMu.Unlock()
-	titandprotocol.RegisterTurbodServer(grpcServer, s)
+	titandprotocol.RegisterTitandServer(grpcServer, s)
 }
 
 // NotifyOutputsWritten implements the NotifyOutputsWritten rpc from titan.proto

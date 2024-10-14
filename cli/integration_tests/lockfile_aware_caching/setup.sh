@@ -9,7 +9,7 @@ cp -a ${SCRIPT_DIR}/${FIXTURE_DIR}/. ${TARGET_DIR}/
 git init ${TARGET_DIR} --quiet
 GIT_ARGS="--git-dir=${TARGET_DIR}/.git --work-tree=${TARGET_DIR}"
 git ${GIT_ARGS} config user.email "titan-test@example.com"
-git ${GIT_ARGS} config user.name "Turbo Test"
+git ${GIT_ARGS} config user.name "Titan Test"
 git ${GIT_ARGS} add .
 git ${GIT_ARGS} commit -m "Initial" --quiet
 

@@ -59,7 +59,7 @@ func calculateGlobalHash(rootpath titanpath.AbsoluteSystemPath, rootPackageJSON 
 
 	// get system env vars for hashing purposes, these include any variable that includes "TITAN"
 	// that is NOT TITAN_TOKEN or TITAN_TEAM or TITAN_BINARY_PATH.
-	names, pairs := getHashableTurboEnvVarsFromOs(env)
+	names, pairs := getHashableTitanEnvVarsFromOs(env)
 	globalHashableEnvNames = append(globalHashableEnvNames, names...)
 	globalHashableEnvPairs = append(globalHashableEnvPairs, pairs...)
 	// sort them for consistent hashing
@@ -104,9 +104,9 @@ func calculateGlobalHash(rootpath titanpath.AbsoluteSystemPath, rootPackageJSON 
 	return globalHash, nil
 }
 
-// getHashableTurboEnvVarsFromOs returns a list of environment variables names and
+// getHashableTitanEnvVarsFromOs returns a list of environment variables names and
 // that are safe to include in the global hash
-func getHashableTurboEnvVarsFromOs(env []string) ([]string, []string) {
+func getHashableTitanEnvVarsFromOs(env []string) ([]string, []string) {
 	var justNames []string
 	var pairs []string
 	for _, e := range env {

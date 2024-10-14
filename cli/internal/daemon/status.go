@@ -40,7 +40,7 @@ func addStatusCmd(root *cobra.Command, helper *cmdutil.Helper) {
 }
 
 func (l *lifecycle) status(ctx context.Context, outputJSON bool) error {
-	client, err := GetClient(ctx, l.base.RepoRoot, l.base.Logger, l.base.TurboVersion, ClientOpts{
+	client, err := GetClient(ctx, l.base.RepoRoot, l.base.Logger, l.base.TitanVersion, ClientOpts{
 		// If the daemon is not running, the status is that it's not running.
 		// We don't want to start it just to check the status.
 		DontStart: true,

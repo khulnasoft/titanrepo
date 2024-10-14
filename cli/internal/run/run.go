@@ -183,7 +183,7 @@ func (r *run) run(ctx gocontext.Context, targets []string) error {
 	if err != nil {
 		return fmt.Errorf("failed to read package.json: %w", err)
 	}
-	titanJSON, err := fs.LoadTurboConfig(r.base.RepoRoot, rootPackageJSON, r.opts.runOpts.singlePackage)
+	titanJSON, err := fs.LoadTitanConfig(r.base.RepoRoot, rootPackageJSON, r.opts.runOpts.singlePackage)
 	if err != nil {
 		return err
 	}
@@ -200,7 +200,7 @@ func (r *run) run(ctx gocontext.Context, targets []string) error {
 	if err != nil {
 		var warnings *context.Warnings
 		if errors.As(err, &warnings) {
-			r.base.LogWarning("Issues occurred when constructing package graph. Turbo will function, but some features may not be available", err)
+			r.base.LogWarning("Issues occurred when constructing package graph. Titan will function, but some features may not be available", err)
 		} else {
 			return err
 		}
@@ -208,7 +208,7 @@ func (r *run) run(ctx gocontext.Context, targets []string) error {
 	if ui.IsCI && !r.opts.runOpts.noDaemon {
 		r.base.Logger.Info("skipping titand since we appear to be in a non-interactive context")
 	} else if !r.opts.runOpts.noDaemon {
-		titandClient, err := daemon.GetClient(ctx, r.base.RepoRoot, r.base.Logger, r.base.TurboVersion, daemon.ClientOpts{})
+		titandClient, err := daemon.GetClient(ctx, r.base.RepoRoot, r.base.Logger, r.base.TitanVersion, daemon.ClientOpts{})
 		if err != nil {
 			r.base.LogWarning("", errors.Wrap(err, "failed to contact titand. Continuing in standalone mode"))
 		} else {
@@ -886,7 +886,7 @@ func (r *run) executeDryRun(ctx gocontext.Context, engine *core.Engine, g *compl
 			command = "<NONEXISTENT>"
 		}
 		isRootTask := packageTask.PackageName == util.RootPkgName
-		if isRootTask && commandLooksLikeTurbo(command) {
+		if isRootTask && commandLooksLikeTitan(command) {
 			return fmt.Errorf("root task %v (%v) looks like it invokes titan and might cause a loop", packageTask.Task, command)
 		}
 		ancestors, err := engine.TaskGraph.Ancestors(packageTask.TaskID)
@@ -947,10 +947,10 @@ func (r *run) executeDryRun(ctx gocontext.Context, engine *core.Engine, g *compl
 	return taskIDs, nil
 }
 
-var _isTurbo = regexp.MustCompile(fmt.Sprintf("(?:^|%v|\\s)titan(?:$|\\s)", regexp.QuoteMeta(string(filepath.Separator))))
+var _isTitan = regexp.MustCompile(fmt.Sprintf("(?:^|%v|\\s)titan(?:$|\\s)", regexp.QuoteMeta(string(filepath.Separator))))
 
-func commandLooksLikeTurbo(command string) bool {
-	return _isTurbo.MatchString(command)
+func commandLooksLikeTitan(command string) bool {
+	return _isTitan.MatchString(command)
 }
 
 func validateTasks(pipeline fs.Pipeline, tasks []string) error {

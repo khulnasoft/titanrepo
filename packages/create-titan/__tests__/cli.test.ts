@@ -15,7 +15,7 @@ const keys = {
   space: "\x20",
 };
 
-const createTurbo = path.resolve(__dirname, "../dist/index.js");
+const createTitan = path.resolve(__dirname, "../dist/index.js");
 const cwd = path.join(__dirname, "../../../..");
 
 const EXPECTED_HELP_MESSAGE = `
@@ -42,7 +42,7 @@ describe("create-titan cli", () => {
   beforeAll(() => {
     cleanupTestDir();
 
-    if (!fs.existsSync(createTurbo)) {
+    if (!fs.existsSync(createTitan)) {
       // TODO: Consider running the build here instead of throwing
       throw new Error(
         `Cannot run Turbrepo CLI tests without building create-titan`
@@ -62,7 +62,7 @@ describe("create-titan cli", () => {
         let packageManager = PACKAGE_MANAGERS["npm"][0];
         configurePackageManager(packageManager);
         let testDir = `my-${packageManager.name}-interactive-no-install-titanrepo`;
-        const cli = spawn("node", [createTurbo, "--no-install"], { cwd });
+        const cli = spawn("node", [createTitan, "--no-install"], { cwd });
 
         const stdout = await runInteractiveCLI(cli, testDir);
 
@@ -102,7 +102,7 @@ describe("create-titan cli", () => {
         let testDir = `my-${packageManager.name}-no-install-titanrepo`;
         const cli = spawn(
           "node",
-          [createTurbo, "--no-install", `--use-${packageManager.command}`],
+          [createTitan, "--no-install", `--use-${packageManager.command}`],
           { cwd }
         );
 
@@ -143,7 +143,7 @@ describe("create-titan cli", () => {
         let packageManager = PACKAGE_MANAGERS["npm"][0];
         configurePackageManager(packageManager);
         let testDir = `my-${packageManager.name}-interactive-install-titanrepo`;
-        const cli = spawn("node", [createTurbo], { cwd });
+        const cli = spawn("node", [createTitan], { cwd });
 
         const stdout = await runInteractiveCLI(cli, testDir);
 
@@ -183,7 +183,7 @@ describe("create-titan cli", () => {
         let testDir = `my-${packageManager.name}-noninteractive-install-titanrepo`;
         const cli = spawn(
           "node",
-          [createTurbo, `--use-${packageManager.command}`, testDir],
+          [createTitan, `--use-${packageManager.command}`, testDir],
           { cwd }
         );
 
@@ -215,24 +215,24 @@ describe("create-titan cli", () => {
 
   describe("printing version", () => {
     it("--version flag works", async () => {
-      let { stdout } = await execFile("node", [createTurbo, "--version"]);
+      let { stdout } = await execFile("node", [createTitan, "--version"]);
       expect(!!semver.valid(stdout.trim())).toBe(true);
     });
 
     it("-v flag works", async () => {
-      let { stdout } = await execFile("node", [createTurbo, "-v"]);
+      let { stdout } = await execFile("node", [createTitan, "-v"]);
       expect(!!semver.valid(stdout.trim())).toBe(true);
     });
   });
 
   describe("printing help message", () => {
     it("--help flag works", async () => {
-      let { stdout } = await execFile("node", [createTurbo, "--help"]);
+      let { stdout } = await execFile("node", [createTitan, "--help"]);
       expect(stdout).toMatchInlineSnapshot(EXPECTED_HELP_MESSAGE);
     });
 
     it("-h flag works", async () => {
-      let { stdout } = await execFile("node", [createTurbo, "-h"]);
+      let { stdout } = await execFile("node", [createTitan, "-h"]);
       expect(stdout).toMatchInlineSnapshot(EXPECTED_HELP_MESSAGE);
     });
   });

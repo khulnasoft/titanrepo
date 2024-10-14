@@ -29,8 +29,8 @@ const (
 // config files, etc. It is not intended for direct use by titan commands, it drives
 // the creation of CmdBase, which is then used by the commands themselves.
 type Helper struct {
-	// TurboVersion is the version of titan that is currently executing
-	TurboVersion string
+	// TitanVersion is the version of titan that is currently executing
+	TitanVersion string
 
 	// for UI
 	forceColor bool
@@ -139,7 +139,7 @@ func (h *Helper) AddFlags(flags *pflag.FlagSet) {
 // titan command.
 func NewHelper(titanVersion string) *Helper {
 	return &Helper{
-		TurboVersion:   titanVersion,
+		TitanVersion:   titanVersion,
 		UserConfigPath: config.DefaultUserConfigPath(),
 	}
 }
@@ -187,7 +187,7 @@ func (h *Helper) GetCmdBase(flags *pflag.FlagSet) (*CmdBase, error) {
 	apiClient := client.NewClient(
 		remoteConfig,
 		logger,
-		h.TurboVersion,
+		h.TitanVersion,
 		h.clientOpts,
 	)
 
@@ -199,7 +199,7 @@ func (h *Helper) GetCmdBase(flags *pflag.FlagSet) (*CmdBase, error) {
 		RepoConfig:   repoConfig,
 		UserConfig:   userConfig,
 		RemoteConfig: remoteConfig,
-		TurboVersion: h.TurboVersion,
+		TitanVersion: h.TitanVersion,
 	}, nil
 }
 
@@ -212,7 +212,7 @@ type CmdBase struct {
 	RepoConfig   *config.RepoConfig
 	UserConfig   *config.UserConfig
 	RemoteConfig client.RemoteConfig
-	TurboVersion string
+	TitanVersion string
 }
 
 // LogError prints an error to the UI

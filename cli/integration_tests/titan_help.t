@@ -9,7 +9,7 @@ Test help flag
     titan [command]
   
   Available Commands:
-    bin         Get the path to the Turbo binary
+    bin         Get the path to the Titan binary
     completion  Generate the autocompletion script for the specified shell
     daemon      Runs the Titanrepo background daemon
     help        Help about any command
@@ -45,7 +45,7 @@ Test help flag
     titan [command]
   
   Available Commands:
-    bin         Get the path to the Turbo binary
+    bin         Get the path to the Titan binary
     completion  Generate the autocompletion script for the specified shell
     daemon      Runs the Titanrepo background daemon
     help        Help about any command

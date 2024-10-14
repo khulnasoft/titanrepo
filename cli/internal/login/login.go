@@ -101,7 +101,7 @@ func (l *login) directUserToURL(url string) {
 
 func (l *login) run(ctx context.Context) error {
 	loginURLBase := l.base.RepoConfig.LoginURL()
-	l.base.Logger.Debug(fmt.Sprintf("titan v%v", l.base.TurboVersion))
+	l.base.Logger.Debug(fmt.Sprintf("titan v%v", l.base.TitanVersion))
 	l.base.Logger.Debug(fmt.Sprintf("api url: %v", l.base.RemoteConfig.APIURL))
 	l.base.Logger.Debug(fmt.Sprintf("login url: %v", loginURLBase))
 	redirectURL := fmt.Sprintf("http://%v:%v", defaultHostname, defaultPort)
@@ -372,5 +372,5 @@ func makeTokenName() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	return fmt.Sprintf("Turbo CLI on %v via %v", host, defaultSSOProvider), nil
+	return fmt.Sprintf("Titan CLI on %v via %v", host, defaultSSOProvider), nil
 }

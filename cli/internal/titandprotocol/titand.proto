@@ -4,7 +4,7 @@ option go_package = "github.com/khulnasoft/titanrepo/cli/internal/titandprotocol
 
 package titandprotocol;
 
-service Turbod {
+service Titand {
   rpc Hello (HelloRequest) returns (HelloResponse);
   rpc Shutdown (ShutdownRequest) returns (ShutdownResponse);
   rpc Status (StatusRequest) returns (StatusResponse);

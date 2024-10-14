@@ -1,6 +1,6 @@
 import { CSSProperties } from "react";
 
-export type TurboUser = {
+export type TitanUser = {
   caption: string;
   image: string;
   infoLink: string;
@@ -8,7 +8,7 @@ export type TurboUser = {
   style?: CSSProperties;
 };
 
-export const users: Array<TurboUser> = [
+export const users: Array<TitanUser> = [
   {
     caption: "Khulnasoft",
     image: "/images/logos/khulnasoft.svg",

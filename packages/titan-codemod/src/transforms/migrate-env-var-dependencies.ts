@@ -115,20 +115,20 @@ export default function migrateEnvVarDependencies(
       process.exit(1);
     }
 
-    const rootTurboJson = fs.readJsonSync(titanConfigPath);
-    if (hasLegacyEnvVarDependencies(rootTurboJson).hasKeys) {
+    const rootTitanJson = fs.readJsonSync(titanConfigPath);
+    if (hasLegacyEnvVarDependencies(rootTitanJson).hasKeys) {
       if (flags.dry) {
         if (flags.print) {
-          console.log(JSON.stringify(migrateConfig(rootTurboJson), null, 2));
+          console.log(JSON.stringify(migrateConfig(rootTitanJson), null, 2));
         }
         skip("titan.json", chalk.dim("(dry run)"));
         skippedCount += 1;
       } else {
         if (flags.print) {
-          console.log(JSON.stringify(migrateConfig(rootTurboJson), null, 2));
+          console.log(JSON.stringify(migrateConfig(rootTitanJson), null, 2));
         }
         ok("titan.json");
-        fs.writeJsonSync(titanConfigPath, migrateConfig(rootTurboJson), {
+        fs.writeJsonSync(titanConfigPath, migrateConfig(rootTitanJson), {
           spaces: 2,
         });
         modifiedCount += 1;

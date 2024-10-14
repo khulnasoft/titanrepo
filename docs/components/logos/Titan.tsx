@@ -1,4 +1,4 @@
-const Turbo = ({ height }) => (
+const Titan = ({ height }) => (
   <svg
     height={height}
     viewBox="0 0 333 75"
@@ -116,4 +116,4 @@ const Turbo = ({ height }) => (
   </svg>
 );
 
-export default Turbo;
+export default Titan;

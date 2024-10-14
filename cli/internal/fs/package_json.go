@@ -33,7 +33,7 @@ type PackageJSON struct {
 	UnresolvedExternalDeps map[string]string            `json:"-"`
 	ExternalDeps           []string                     `json:"-"`
 	TransitiveDeps         []string                     `json:"-"`
-	LegacyTurboConfig      *TurboJSON                   `json:"titan"`
+	LegacyTitanConfig      *TitanJSON                   `json:"titan"`
 	Mu                     sync.Mutex                   `json:"-"`
 	ExternalDepsHash       string                       `json:"-"`
 }

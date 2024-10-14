@@ -23,20 +23,20 @@ const (
 
 var defaultOutputs = TaskOutputs{Inclusions: []string{"dist/**/*", "build/**/*"}}
 
-type rawTurboJSON struct {
+type rawTitanJSON struct {
 	// Global root filesystem dependencies
 	GlobalDependencies []string `json:"globalDependencies,omitempty"`
 	// Global env
 	GlobalEnv []string `json:"globalEnv,omitempty"`
-	// Pipeline is a map of Turbo pipeline entries which define the task graph
+	// Pipeline is a map of Titan pipeline entries which define the task graph
 	// and cache behavior on a per task or per package-task basis.
 	Pipeline Pipeline
 	// Configuration options when interfacing with the remote cache
 	RemoteCacheOptions RemoteCacheOptions `json:"remoteCache,omitempty"`
 }
 
-// TurboJSON is the root titanrepo configuration
-type TurboJSON struct {
+// TitanJSON is the root titanrepo configuration
+type TitanJSON struct {
 	GlobalDeps         []string
 	GlobalEnv          []string
 	Pipeline           Pipeline
@@ -72,10 +72,10 @@ type TaskDefinition struct {
 	OutputMode              util.TaskOutputMode
 }
 
-// LoadTurboConfig loads, or optionally, synthesizes a TurboJSON instance
-func LoadTurboConfig(rootPath titanpath.AbsoluteSystemPath, rootPackageJSON *PackageJSON, includeSynthesizedFromRootPackageJSON bool) (*TurboJSON, error) {
-	var titanJSON *TurboJSON
-	titanFromFiles, err := ReadTurboConfig(rootPath, rootPackageJSON)
+// LoadTitanConfig loads, or optionally, synthesizes a TitanJSON instance
+func LoadTitanConfig(rootPath titanpath.AbsoluteSystemPath, rootPackageJSON *PackageJSON, includeSynthesizedFromRootPackageJSON bool) (*TitanJSON, error) {
+	var titanJSON *TitanJSON
+	titanFromFiles, err := ReadTitanConfig(rootPath, rootPackageJSON)
 	if !includeSynthesizedFromRootPackageJSON && err != nil {
 		// There was an error, and we don't have any chance of recovering
 		// because we aren't synthesizing anything
@@ -85,7 +85,7 @@ func LoadTurboConfig(rootPath titanpath.AbsoluteSystemPath, rootPackageJSON *Pac
 		return titanFromFiles, nil
 	} else if errors.Is(err, os.ErrNotExist) {
 		// titan.json doesn't exist, but we're going try to synthesize something
-		titanJSON = &TurboJSON{
+		titanJSON = &TitanJSON{
 			Pipeline: make(Pipeline),
 		}
 	} else if err != nil {
@@ -121,49 +121,49 @@ type TaskOutputs struct {
 	Exclusions []string
 }
 
-// ReadTurboConfig toggles between reading from package.json or the configFile to support early adopters.
-func ReadTurboConfig(rootPath titanpath.AbsoluteSystemPath, rootPackageJSON *PackageJSON) (*TurboJSON, error) {
+// ReadTitanConfig toggles between reading from package.json or the configFile to support early adopters.
+func ReadTitanConfig(rootPath titanpath.AbsoluteSystemPath, rootPackageJSON *PackageJSON) (*TitanJSON, error) {
 
 	titanJSONPath := rootPath.UntypedJoin(configFile)
 
 	// Check if titan key in package.json exists
-	hasLegacyConfig := rootPackageJSON.LegacyTurboConfig != nil
+	hasLegacyConfig := rootPackageJSON.LegacyTitanConfig != nil
 
 	// If the configFile exists, use that
 	if titanJSONPath.FileExists() {
-		titanJSON, err := readTurboJSON(titanJSONPath)
+		titanJSON, err := readTitanJSON(titanJSONPath)
 		if err != nil {
 			return nil, fmt.Errorf("%s: %w", configFile, err)
 		}
 
-		// If pkg.Turbo exists, log a warning and delete it from the representation
+		// If pkg.Titan exists, log a warning and delete it from the representation
 		// TODO: turn off this warning eventually
 		if hasLegacyConfig {
 			log.Printf("[WARNING] Ignoring \"titan\" key in package.json, using %s instead.", configFile)
-			rootPackageJSON.LegacyTurboConfig = nil
+			rootPackageJSON.LegacyTitanConfig = nil
 		}
 
 		return titanJSON, nil
 	}
 
-	// Use pkg.Turbo if the configFile doesn't exist and we want the fallback feature
+	// Use pkg.Titan if the configFile doesn't exist and we want the fallback feature
 	// TODO: turn this fallback off eventually
 	if hasLegacyConfig {
 		log.Printf("[DEPRECATED] \"titan\" in package.json is deprecated. Migrate to %s by running \"npx @titan/codemod create-titan-config\"\n", configFile)
-		return rootPackageJSON.LegacyTurboConfig, nil
+		return rootPackageJSON.LegacyTitanConfig, nil
 	}
 
 	// If there's no titan.json and no titan key in package.json, return an error.
 	return nil, errors.Wrapf(os.ErrNotExist, "Could not find %s. Follow directions at https://titan.khulnasoft.com/docs/getting-started to create one", configFile)
 }
 
-// readTurboJSON reads the configFile in to a struct
-func readTurboJSON(path titanpath.AbsoluteSystemPath) (*TurboJSON, error) {
+// readTitanJSON reads the configFile in to a struct
+func readTitanJSON(path titanpath.AbsoluteSystemPath) (*TitanJSON, error) {
 	file, err := path.Open()
 	if err != nil {
 		return nil, err
 	}
-	var titanJSON *TurboJSON
+	var titanJSON *TitanJSON
 	data, err := ioutil.ReadAll(file)
 	if err != nil {
 		return nil, err
@@ -279,9 +279,9 @@ func (c *TaskDefinition) UnmarshalJSON(data []byte) error {
 	return nil
 }
 
-// UnmarshalJSON deserializes TurboJSON objects into struct
-func (c *TurboJSON) UnmarshalJSON(data []byte) error {
-	raw := &rawTurboJSON{}
+// UnmarshalJSON deserializes TitanJSON objects into struct
+func (c *TitanJSON) UnmarshalJSON(data []byte) error {
+	raw := &rawTitanJSON{}
 	if err := json.Unmarshal(data, &raw); err != nil {
 		return err
 	}
@@ -308,7 +308,7 @@ func (c *TurboJSON) UnmarshalJSON(data []byte) error {
 		}
 	}
 
-	// turn the set into an array and assign to the TurboJSON struct fields.
+	// turn the set into an array and assign to the TitanJSON struct fields.
 	c.GlobalEnv = envVarDependencies.UnsafeListOfStrings()
 	sort.Strings(c.GlobalEnv)
 	c.GlobalDeps = globalFileDependencies.UnsafeListOfStrings()

@@ -131,7 +131,7 @@ func TestDaemonLifecycle(t *testing.T) {
 	wg := &sync.WaitGroup{}
 	wg.Add(1)
 	go func() {
-		serverErr = d.runTurboServer(ctx, ts, watcher)
+		serverErr = d.runTitanServer(ctx, ts, watcher)
 		wg.Done()
 	}()
 
@@ -141,7 +141,7 @@ func TestDaemonLifecycle(t *testing.T) {
 	waitForFile(t, pidPath, 1*time.Second)
 	cancel()
 	wg.Wait()
-	assert.NilError(t, serverErr, "runTurboServer")
+	assert.NilError(t, serverErr, "runTitanServer")
 	if sockPath.FileExists() {
 		t.Errorf("%v still exists, should have been cleaned up", sockPath)
 	}
@@ -166,7 +166,7 @@ func TestTimeout(t *testing.T) {
 		reqCh:      make(chan struct{}),
 		timedOutCh: make(chan struct{}),
 	}
-	err := d.runTurboServer(ctx, ts, watcher)
+	err := d.runTitanServer(ctx, ts, watcher)
 	if !errors.Is(err, errInactivityTimeout) {
 		t.Errorf("server error got %v, want %v", err, errInactivityTimeout)
 	}
@@ -190,7 +190,7 @@ func TestCaughtSignal(t *testing.T) {
 	}
 	errCh := make(chan error)
 	go func() {
-		err := d.runTurboServer(ctx, ts, watcher)
+		err := d.runTitanServer(ctx, ts, watcher)
 		errCh <- err
 	}()
 	<-ts.registered
@@ -202,7 +202,7 @@ func TestCaughtSignal(t *testing.T) {
 	// Either we are serving, and Serve will return with nil when GracefulStop is
 	// called, or we aren't serving yet, and the subsequent call to Serve will
 	// immediately return with grpc.ErrServerStopped. So, both nil and grpc.ErrServerStopped
-	// are acceptable outcomes for runTurboServer. Any other error, or a timeout, is a
+	// are acceptable outcomes for runTitanServer. Any other error, or a timeout, is a
 	// failure.
 	watcher.Close()
 
@@ -215,7 +215,7 @@ func TestCaughtSignal(t *testing.T) {
 	// or not we close the signal watcher before grpc.Server.Serve was
 	// called.
 	if err != nil && !errors.Is(err, grpc.ErrServerStopped) {
-		t.Errorf("runTurboServer got err %v, want nil or ErrServerStopped", err)
+		t.Errorf("runTitanServer got err %v, want nil or ErrServerStopped", err)
 	}
 }
 
@@ -237,7 +237,7 @@ func TestCleanupOnPanic(t *testing.T) {
 	}
 	errCh := make(chan error)
 	go func() {
-		err := d.runTurboServer(ctx, ts, watcher)
+		err := d.runTitanServer(ctx, ts, watcher)
 		errCh <- err
 	}()
 	<-ts.registered

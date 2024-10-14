@@ -41,7 +41,7 @@ type Opts struct {
 
 // Client represents a connection to the daemon process
 type Client struct {
-	titandprotocol.TurbodClient
+	titandprotocol.TitandClient
 	*grpc.ClientConn
 	SockPath titanpath.AbsoluteSystemPath
 	PidPath  titanpath.AbsoluteSystemPath
@@ -57,7 +57,7 @@ type Connector struct {
 	SockPath     titanpath.AbsoluteSystemPath
 	PidPath      titanpath.AbsoluteSystemPath
 	LogPath      titanpath.AbsoluteSystemPath
-	TurboVersion string
+	TitanVersion string
 }
 
 // ConnectionError is returned in the error case from connect. It wraps the underlying
@@ -294,9 +294,9 @@ func (c *Connector) getClientConn() (*Client, error) {
 	if err != nil {
 		return nil, err
 	}
-	tc := titandprotocol.NewTurbodClient(conn)
+	tc := titandprotocol.NewTitandClient(conn)
 	return &Client{
-		TurbodClient: tc,
+		TitandClient: tc,
 		ClientConn:   conn,
 		SockPath:     c.SockPath,
 		PidPath:      c.PidPath,
@@ -304,9 +304,9 @@ func (c *Connector) getClientConn() (*Client, error) {
 	}, nil
 }
 
-func (c *Connector) sendHello(ctx context.Context, client titandprotocol.TurbodClient) error {
+func (c *Connector) sendHello(ctx context.Context, client titandprotocol.TitandClient) error {
 	_, err := client.Hello(ctx, &titandprotocol.HelloRequest{
-		Version: c.TurboVersion,
+		Version: c.TitanVersion,
 		// TODO: add session id
 	})
 	status := status.Convert(err)
