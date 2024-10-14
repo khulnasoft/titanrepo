@@ -1,5 +1,5 @@
 {
-  "name": "tsconfig",
+  "name": "@titan/tsconfig",
   "version": "0.0.0",
   "private": true,
   "license": "MIT",

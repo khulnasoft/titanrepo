@@ -3,27 +3,45 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "titan": "cd cli && make titan && cd .. && node titanw.js",
-    "docs": "pnpm -- titan run dev --filter=docs --no-cache",
-    "build": "pnpm -- titan run build --filter=docs",
-    "run-example": "./scripts/run-example.sh"
+    "build": "pnpm -- titan run build",
+    "build:titan": "pnpm run --filter=cli build",
+    "build:ts": "tsc -b tsconfig.project.json",
+    "lint:prettier": "titan run lint:prettier",
+    "check:toml": "taplo format --check",
+    "titan": "pnpm run build:titan && node titanw.js",
+    "titan-prebuilt": "node titanw.js",
+    "prepare": "husky install",
+    "test": "titan run test",
+    "test:integration": "pnpm --filter titanrepo-tests-integration exec prysk",
+    "rustdoc": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going || true",
+    "rustdoc:open": "RUSTDOCFLAGS=\"-Z unstable-options --enable-index-page\" cargo doc --workspace --no-deps --keep-going --open"
   },
   "devDependencies": {
-    "lint-staged": "^13.0.1",
-    "prettier": "^2.5.0",
-    "semver": "^7.3.5",
-    "simple-git-hooks": "^2.7.0"
+    "@taplo/cli": "^0.5.2",
+    "@types/react": "18.2.0",
+    "eslint": "^8.55.0",
+    "husky": "^8.0.0",
+    "lint-staged": "^13.1.0",
+    "prettier": "^2.8.7",
+    "semver": "^7.3.8",
+    "typescript": "5.3.3"
   },
   "lint-staged": {
-    "*.{ts,tsx,md,mdx,js,jsx}": [
+    "*.{js,jsx,ts,tsx}": [
       "prettier --write"
     ],
-    "*.go": [
-      "pnpm --filter cli format"
+    "*.{md,mdx,mjs,yml,yaml,css}": [
+      "prettier --write"
+    ],
+    "*.toml": [
+      "taplo format"
+    ],
+    "*.rs": [
+      "cargo fmt --"
     ]
   },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm exec lint-staged"
-  },
-  "packageManager": "pnpm@7.2.1"
+  "packageManager": "pnpm@8.14.0",
+  "engines": {
+    "node": "20.x"
+  }
 }

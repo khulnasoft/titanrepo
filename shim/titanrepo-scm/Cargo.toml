@@ -1,0 +1,32 @@
+[package]
+name = "titanrepo-scm"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lints]
+workspace = true
+
+[dependencies]
+bstr = "1.4.0"
+git2 = { version = "0.16.1", default-features = false }
+globwalk = { path = "../titanrepo-globwalk" }
+hex = { workspace = true }
+ignore = "0.4.20"
+nom = "7.1.3"
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+sha1 = "0.10.5"
+thiserror = { workspace = true }
+tracing = { workspace = true }
+titanpath = { workspace = true }
+titanrepo-ci = { workspace = true }
+titanrepo-telemetry = { path = "../titanrepo-telemetry" }
+wax = { workspace = true }
+which = { workspace = true }
+
+[dev-dependencies]
+tempfile = { workspace = true }
+test-case = "3.1.0"

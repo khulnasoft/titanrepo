@@ -1,0 +1,19 @@
+[package]
+name = "titanrepo-analytics"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[lints]
+workspace = true
+
+[dependencies]
+futures.workspace = true
+thiserror = { workspace = true }
+tokio = { workspace = true, features = ["full", "time"] }
+tracing = { workspace = true }
+titanrepo-api-client = { workspace = true }
+titanrepo-khulnasoft-api = { workspace = true }
+uuid = { version = "1.5.0", features = ["v4"] }
