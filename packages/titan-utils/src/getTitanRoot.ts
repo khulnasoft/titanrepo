@@ -1,7 +1,7 @@
 import { findRootSync } from "@manypkg/find-root";
 import searchUp from "./searchUp";
 
-function getTurboRoot(cwd?: string): string | null {
+function getTitanRoot(cwd?: string): string | null {
   // Titanrepo root can be determined by the presence of titan.json
   let root = searchUp({ target: "titan.json", cwd: cwd || process.cwd() });
 
@@ -14,4 +14,4 @@ function getTurboRoot(cwd?: string): string | null {
   return root;
 }
 
-export default getTurboRoot;
+export default getTitanRoot;

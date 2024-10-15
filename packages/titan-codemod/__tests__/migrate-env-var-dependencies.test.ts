@@ -6,7 +6,7 @@ import {
 } from "../src/transforms/migrate-env-var-dependencies";
 import type { Schema } from "titan-types";
 
-const getTestTurboConfig = (override: Schema = { pipeline: {} }): Schema => {
+const getTestTitanConfig = (override: Schema = { pipeline: {} }): Schema => {
   const config = {
     $schema: "./docs/public/schema.json",
     globalDependencies: ["$GLOBAL_ENV_KEY"],
@@ -36,7 +36,7 @@ const getTestTurboConfig = (override: Schema = { pipeline: {} }): Schema => {
 describe("migrate-env-var-dependencies", () => {
   describe("hasLegacyEnvVarDependencies", () => {
     it("finds env keys in legacy titan.json - has keys", async () => {
-      const config = getTestTurboConfig();
+      const config = getTestTitanConfig();
       const { hasKeys, envVars } = hasLegacyEnvVarDependencies(config);
       expect(hasKeys).toEqual(true);
       expect(envVars).toMatchInlineSnapshot(`
@@ -49,7 +49,7 @@ describe("migrate-env-var-dependencies", () => {
     });
 
     it("finds env keys in legacy titan.json - multiple pipeline keys", async () => {
-      const config = getTestTurboConfig({
+      const config = getTestTitanConfig({
         pipeline: { test: { dependsOn: ["$MY_ENV"] } },
       });
       const { hasKeys, envVars } = hasLegacyEnvVarDependencies(config);
@@ -66,7 +66,7 @@ describe("migrate-env-var-dependencies", () => {
 
     it("finds env keys in legacy titan.json - no keys", async () => {
       // override to exclude keys
-      const config = getTestTurboConfig({
+      const config = getTestTitanConfig({
         globalDependencies: [],
         pipeline: { build: { dependsOn: [] } },
       });
@@ -78,7 +78,7 @@ describe("migrate-env-var-dependencies", () => {
 
   describe("migratePipeline", () => {
     it("migrates pipeline with env var dependencies", async () => {
-      const config = getTestTurboConfig();
+      const config = getTestTitanConfig();
       const { build } = config.pipeline;
       const pipeline = migratePipeline(build);
       expect(pipeline).toHaveProperty("env");
@@ -96,7 +96,7 @@ describe("migrate-env-var-dependencies", () => {
     });
 
     it("migrates pipeline with no env var dependencies", async () => {
-      const config = getTestTurboConfig();
+      const config = getTestTitanConfig();
       const { test } = config.pipeline;
       const pipeline = migratePipeline(test);
       expect(pipeline.env).toBeUndefined();
@@ -108,7 +108,7 @@ describe("migrate-env-var-dependencies", () => {
     });
 
     it("migrates pipeline with existing env key", async () => {
-      const config = getTestTurboConfig({
+      const config = getTestTitanConfig({
         pipeline: { test: { env: ["$MY_ENV"], dependsOn: ["^build"] } },
       });
       const { test } = config.pipeline;
@@ -127,7 +127,7 @@ describe("migrate-env-var-dependencies", () => {
     });
 
     it("migrates pipeline with incomplete env key", async () => {
-      const config = getTestTurboConfig({
+      const config = getTestTitanConfig({
         pipeline: {
           test: { env: ["$MY_ENV"], dependsOn: ["^build", "$SUPER_COOL"] },
         },
@@ -149,7 +149,7 @@ describe("migrate-env-var-dependencies", () => {
     });
 
     it("migrates pipeline with duplicate env keys", async () => {
-      const config = getTestTurboConfig({
+      const config = getTestTitanConfig({
         pipeline: {
           test: { env: ["$MY_ENV"], dependsOn: ["^build", "$MY_ENV"] },
         },
@@ -173,7 +173,7 @@ describe("migrate-env-var-dependencies", () => {
 
   describe("migrateConfig", () => {
     it("migrates config with env var dependencies", async () => {
-      const config = getTestTurboConfig();
+      const config = getTestTitanConfig();
       const pipeline = migrateConfig(config);
       expect(pipeline).toMatchInlineSnapshot(`
         Object {
@@ -216,7 +216,7 @@ describe("migrate-env-var-dependencies", () => {
     });
 
     it("migrates config with no env var dependencies", async () => {
-      const config = getTestTurboConfig({
+      const config = getTestTitanConfig({
         globalDependencies: [],
         pipeline: {
           build: { dependsOn: ["^build"] },
@@ -257,7 +257,7 @@ describe("migrate-env-var-dependencies", () => {
     });
 
     it("migrates config with inconsistent config", async () => {
-      const config = getTestTurboConfig({
+      const config = getTestTitanConfig({
         pipeline: {
           test: { env: ["$MY_ENV"], dependsOn: ["^build", "$SUPER_COOL"] },
         },
@@ -308,7 +308,7 @@ describe("migrate-env-var-dependencies", () => {
     });
 
     it("migrates config with duplicate env keys", async () => {
-      const config = getTestTurboConfig({
+      const config = getTestTitanConfig({
         pipeline: {
           test: { env: ["$MY_ENV"], dependsOn: ["^build", "$MY_ENV"] },
         },

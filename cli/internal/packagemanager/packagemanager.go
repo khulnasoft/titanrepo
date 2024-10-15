@@ -51,7 +51,7 @@ type PackageManager struct {
 	// Return the list of workspace ignore globs
 	getWorkspaceIgnores func(pm PackageManager, rootpath titanpath.AbsoluteSystemPath) ([]string, error)
 
-	// Detect if Turbo knows how to produce a pruned workspace for the project
+	// Detect if Titan knows how to produce a pruned workspace for the project
 	canPrune func(cwd titanpath.AbsoluteSystemPath) (bool, error)
 
 	// Test a manager and version tuple to see if it is the Package Manager.

@@ -1,4 +1,4 @@
-import findTurboConfig from "./findTurboConfig";
+import findTitanConfig from "./findTitanConfig";
 import type { Schema } from "titan-types";
 
 function findDependsOnEnvVars({
@@ -26,7 +26,7 @@ function getEnvVarDependencies({
   cwd: string;
   titanConfig?: Schema;
 }): Set<string> | null {
-  const titanJsonContent = titanConfig || findTurboConfig({ cwd });
+  const titanJsonContent = titanConfig || findTitanConfig({ cwd });
   if (!titanJsonContent) {
     return null;
   }

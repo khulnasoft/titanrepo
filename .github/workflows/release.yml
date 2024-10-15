@@ -111,7 +111,7 @@ jobs:
 
       - name: Configure git
         run: |
-          git config --global user.name 'Turbobot'
+          git config --global user.name 'Titanbot'
           git config --global user.email 'titanbot@khulnasoft.com'
 
       - name: Install GoReleaser

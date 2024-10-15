@@ -138,7 +138,7 @@ export function Footer() {
               <KhulnasoftLogo />
             </a>
             <p className="mt-4 text-xs text-gray-500 ">
-              &copy; {new Date().getFullYear()} Khulnasoft, Inc. All rights
+              &copy; {new Date().getFullYear()} KhulnaSoft, Ltd. All rights
               reserved.
             </p>
           </div>

@@ -9,7 +9,7 @@ import {
   SparklesIcon,
 } from "@heroicons/react/outline";
 import { DetailedFeatureLink } from "./Feature";
-import Turbo from "./logos/Turbo";
+import Titan from "./logos/Titan";
 
 export const QuickStartArea = () => {
   return (

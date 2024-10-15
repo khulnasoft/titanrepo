@@ -1,9 +1,9 @@
 import fs from "fs";
-import { getTurboRoot } from "titan-utils";
+import { getTitanRoot } from "titan-utils";
 import type { Schema } from "titan-types";
 
-function findTurboConfig({ cwd }: { cwd?: string }): Schema | null {
-  const titanRoot = getTurboRoot(cwd);
+function findTitanConfig({ cwd }: { cwd?: string }): Schema | null {
+  const titanRoot = getTitanRoot(cwd);
   if (titanRoot) {
     try {
       const raw = fs.readFileSync(`${titanRoot}/titan.json`, "utf8");
@@ -18,4 +18,4 @@ function findTurboConfig({ cwd }: { cwd?: string }): Schema | null {
   return null;
 }
 
-export default findTurboConfig;
+export default findTitanConfig;

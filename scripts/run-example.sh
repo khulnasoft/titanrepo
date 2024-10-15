@@ -11,7 +11,7 @@ export TITAN_TAG=$(cat $(pwd)/version.txt | sed -n '2 p')
 export folder=$1
 export pkgManager=$2
 echo "=> Binary path: TITAN_BINARY_PATH=$TITAN_BINARY_PATH"
-echo "=> Local Turbo Version: TITAN_VERSION=$TITAN_VERSION"
+echo "=> Local Titan Version: TITAN_VERSION=$TITAN_VERSION"
 echo "=> Moving our own eslint settings out of the way..."
 echo "=> Actually running examples for real..."
 

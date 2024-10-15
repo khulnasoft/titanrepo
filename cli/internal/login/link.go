@@ -200,7 +200,7 @@ func (l *link) run() error {
 	}
 
 	if l.modifyGitIgnore {
-		if err := l.addTurboToGitignore(); err != nil {
+		if err := l.addTitanToGitignore(); err != nil {
 			return err
 		}
 	}
@@ -237,7 +237,7 @@ func promptSetup(location string) (bool, error) {
 	return shouldSetup, nil
 }
 
-func (l *link) addTurboToGitignore() error {
+func (l *link) addTitanToGitignore() error {
 	gitignorePath := l.base.RepoRoot.Join(".gitignore")
 
 	if !gitignorePath.FileExists() {
@@ -253,18 +253,18 @@ func (l *link) addTurboToGitignore() error {
 		return fmt.Errorf("could not find or update .gitignore.\n%w", err)
 	}
 
-	hasTurbo := false
+	hasTitan := false
 	gitignoreContents := string(gitignoreBytes)
 	gitignoreLines := strings.Split(gitignoreContents, "\n")
 
 	for _, line := range gitignoreLines {
 		if strings.TrimSpace(line) == ".titan" {
-			hasTurbo = true
+			hasTitan = true
 			break
 		}
 	}
 
-	if !hasTurbo {
+	if !hasTitan {
 		gitignore, err := gitignorePath.OpenFile(os.O_APPEND|os.O_WRONLY, 0644)
 		if err != nil {
 			return fmt.Errorf("could not find or update .gitignore.\n%w", err)

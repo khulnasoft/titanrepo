@@ -12,7 +12,7 @@ import (
 func BinCmd(helper *cmdutil.Helper) *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "bin",
-		Short: "Get the path to the Turbo binary",
+		Short: "Get the path to the Titan binary",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			base, err := helper.GetCmdBase(cmd.Flags())
 			if err != nil {

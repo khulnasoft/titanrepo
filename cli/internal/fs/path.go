@@ -102,9 +102,9 @@ func TempDir(subDir string) titanpath.AbsoluteSystemPath {
 	return titanpath.AbsoluteSystemPath(os.TempDir()).UntypedJoin(subDir)
 }
 
-// GetTurboDataDir returns a directory outside of the repo
+// GetTitanDataDir returns a directory outside of the repo
 // where titan can store data files related to titan.
-func GetTurboDataDir() titanpath.AbsoluteSystemPath {
+func GetTitanDataDir() titanpath.AbsoluteSystemPath {
 	dataHome := AbsoluteSystemPathFromUpstream(xdg.DataHome)
 	return dataHome.UntypedJoin("titanrepo")
 }

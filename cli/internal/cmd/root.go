@@ -105,7 +105,7 @@ func getCmd(helper *cmdutil.Helper, signalWatcher *signals.Watcher) *cobra.Comma
 		Use:              "titan",
 		Short:            "The build system that makes ship happen",
 		TraverseChildren: true,
-		Version:          helper.TurboVersion,
+		Version:          helper.TitanVersion,
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			if execOpts.traceFile != "" {
 				cleanup, err := createTraceFile(execOpts.traceFile)

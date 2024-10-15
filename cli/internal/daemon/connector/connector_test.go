@@ -155,7 +155,7 @@ func TestKillDeadServerWithProcess(t *testing.T) {
 }
 
 type mockServer struct {
-	titandprotocol.UnimplementedTurbodServer
+	titandprotocol.UnimplementedTitandServer
 	helloErr     error
 	shutdownResp *titandprotocol.ShutdownResponse
 	pidFile      titanpath.AbsoluteSystemPath
@@ -193,7 +193,7 @@ func TestKillLiveServer(t *testing.T) {
 		Opts:         Opts{},
 		SockPath:     sockPath,
 		PidPath:      pidPath,
-		TurboVersion: "some-version",
+		TitanVersion: "some-version",
 	}
 
 	st := status.New(codes.FailedPrecondition, "version mismatch")
@@ -204,7 +204,7 @@ func TestKillLiveServer(t *testing.T) {
 	}
 	lis := bufconn.Listen(1024 * 1024)
 	grpcServer := grpc.NewServer()
-	titandprotocol.RegisterTurbodServer(grpcServer, mock)
+	titandprotocol.RegisterTitandServer(grpcServer, mock)
 	go func(t *testing.T) {
 		if err := grpcServer.Serve(lis); err != nil {
 			t.Logf("server closed: %v", err)
@@ -215,9 +215,9 @@ func TestKillLiveServer(t *testing.T) {
 		return lis.Dial()
 	}), grpc.WithTransportCredentials(insecure.NewCredentials()))
 	assert.NilError(t, err, "DialContext")
-	titanClient := titandprotocol.NewTurbodClient(conn)
+	titanClient := titandprotocol.NewTitandClient(conn)
 	client := &Client{
-		TurbodClient: titanClient,
+		TitandClient: titanClient,
 		ClientConn:   conn,
 	}
 	err = c.sendHello(ctx, client)

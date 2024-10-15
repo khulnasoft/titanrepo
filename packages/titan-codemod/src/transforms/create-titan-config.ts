@@ -4,7 +4,7 @@ import path from "path";
 import { Flags } from "../types";
 import { skip, ok, error } from "../logger";
 
-export default function createTurboConfig(files: string[], flags: Flags) {
+export default function createTitanConfig(files: string[], flags: Flags) {
   if (files.length === 1) {
     const dir = files[0];
     const root = path.resolve(process.cwd(), dir);

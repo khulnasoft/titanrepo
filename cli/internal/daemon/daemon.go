@@ -52,7 +52,7 @@ func getLogFilePath(repoRoot titanpath.AbsoluteSystemPath) (titanpath.AbsoluteSy
 	base := repoRoot.Base()
 	logFilename := fmt.Sprintf("%v-%v.log", hexHash, base)
 
-	logsDir := fs.GetTurboDataDir().UntypedJoin("logs")
+	logsDir := fs.GetTitanDataDir().UntypedJoin("logs")
 	return logsDir.UntypedJoin(logFilename), nil
 }
 
@@ -115,13 +115,13 @@ func GetCmd(helper *cmdutil.Helper, signalWatcher *signals.Watcher) *cobra.Comma
 				timedOutCh: make(chan struct{}),
 			}
 			serverName := getRepoHash(base.RepoRoot)
-			titanServer, err := server.New(serverName, d.logger.Named("rpc server"), base.RepoRoot, base.TurboVersion, logFilePath)
+			titanServer, err := server.New(serverName, d.logger.Named("rpc server"), base.RepoRoot, base.TitanVersion, logFilePath)
 			if err != nil {
 				d.logError(err)
 				return err
 			}
 			defer func() { _ = titanServer.Close() }()
-			err = d.runTurboServer(ctx, titanServer, signalWatcher)
+			err = d.runTitanServer(ctx, titanServer, signalWatcher)
 			if err != nil {
 				d.logError(err)
 				return err
@@ -166,7 +166,7 @@ type rpcServer interface {
 	Register(grpcServer server.GRPCServer)
 }
 
-func (d *daemon) runTurboServer(parentContext context.Context, rpcServer rpcServer, signalWatcher *signals.Watcher) error {
+func (d *daemon) runTitanServer(parentContext context.Context, rpcServer rpcServer, signalWatcher *signals.Watcher) error {
 	ctx, cancel := context.WithCancel(parentContext)
 	defer cancel()
 	pidPath := getPidFile(d.repoRoot)
@@ -293,13 +293,13 @@ func GetClient(ctx context.Context, repoRoot titanpath.AbsoluteSystemPath, logge
 		return nil, err
 	}
 	c := &connector.Connector{
-		Logger:       logger.Named("TurbodClient"),
+		Logger:       logger.Named("TitandClient"),
 		Bin:          bin,
 		Opts:         opts,
 		SockPath:     sockPath,
 		PidPath:      pidPath,
 		LogPath:      logPath,
-		TurboVersion: titanVersion,
+		TitanVersion: titanVersion,
 	}
 	client, err := c.Connect(ctx)
 	if err != nil {

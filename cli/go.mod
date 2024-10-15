@@ -1,8 +1,6 @@
 module github.com/khulnasoft/titanrepo/cli
 
-go 1.21
-
-toolchain go1.23.1
+go 1.18
 
 require (
 	github.com/AlecAivazis/survey/v2 v2.3.5
@@ -18,7 +16,7 @@ require (
 	github.com/fsnotify/fsnotify v1.5.4
 	github.com/gobwas/glob v0.2.3
 	github.com/google/chrometracing v0.0.0-20210413150014-55fded0163e7
-	github.com/google/uuid v1.6.0
+	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/go-grpc-middleware v1.3.0
 	github.com/hashicorp/go-gatedio v0.5.0
 	github.com/hashicorp/go-hclog v1.2.1
@@ -41,10 +39,10 @@ require (
 	github.com/spf13/viper v1.12.0
 	github.com/stretchr/testify v1.8.0
 	github.com/yookoala/realpath v1.0.0
-	golang.org/x/sync v0.8.0
-	golang.org/x/sys v0.24.0
-	google.golang.org/grpc v1.67.1
-	google.golang.org/protobuf v1.34.2
+	golang.org/x/sync v0.0.0-20210220032951-036812b2e83c
+	golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a
+	google.golang.org/grpc v1.46.2
+	google.golang.org/protobuf v1.28.0
 	gotest.tools/v3 v3.3.0
 	muzzammil.xyz/jsonc v1.0.0
 )
@@ -56,7 +54,7 @@ require (
 	github.com/bgentry/speakeasy v0.1.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
-	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/google/go-cmp v0.5.8 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-cleanhttp v0.5.2 // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
@@ -81,10 +79,10 @@ require (
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
 	github.com/subosito/gotenv v1.3.0 // indirect
-	golang.org/x/crypto v0.26.0 // indirect
-	golang.org/x/net v0.28.0 // indirect
-	golang.org/x/term v0.23.0 // indirect
-	golang.org/x/text v0.17.0 // indirect
+	golang.org/x/crypto v0.0.0-20220411220226-7b82a4e95df4 // indirect
+	golang.org/x/net v0.0.0-20220520000938-2e3eb7b945c2 // indirect
+	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
+	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20220519153652-3a47de7e79bd // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect

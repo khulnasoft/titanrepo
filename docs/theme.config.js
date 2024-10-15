@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useConfig } from "nextra-theme-docs";
 import { Footer } from "./components/Footer";
-import TurboLogo from "./components/logos/Turbo";
+import TitanLogo from "./components/logos/Titan";
 
 const theme = {
   project: {
@@ -37,7 +37,7 @@ const theme = {
   logo: function LogoActual() {
     return (
       <>
-        <TurboLogo height={32} />
+        <TitanLogo height={32} />
         <span className="sr-only">Titanrepo</span>
       </>
     );

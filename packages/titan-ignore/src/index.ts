@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 import { exec } from "child_process";
-import { getTurboRoot, getScopeFromPath, getScopeFromArgs } from "titan-utils";
+import { getTitanRoot, getScopeFromPath, getScopeFromArgs } from "titan-utils";
 import { getComparison } from "./getComparison";
 
 console.log(
@@ -17,7 +17,7 @@ if (process.env.TITAN_FORCE === "true") {
 }
 
 // find the monorepo root
-const root = getTurboRoot();
+const root = getTitanRoot();
 if (!root) {
   console.error(
     "Error: workspace root not found. titan-ignore inferencing failed, proceeding with build."

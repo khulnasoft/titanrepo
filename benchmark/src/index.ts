@@ -61,7 +61,7 @@ function setup(): void {
   cp.execSync("yarn install", DEFAULT_EXEC_OPTS);
 }
 
-function cleanTurboCache(): void {
+function cleanTitanCache(): void {
   if (fs.existsSync(DEFAULT_CACHE_PATH)) {
     console.log("clearing cache");
     fs.rmSync(DEFAULT_CACHE_PATH, { recursive: true });
@@ -77,7 +77,7 @@ function cleanBuild(): Timing[] {
   const concurrency = isLocal ? "" : " --concurrency=1";
   for (let i = 0; i < repetitions; i++) {
     // clean first, we'll leave the cache in place for subsequent builds
-    cleanTurboCache();
+    cleanTitanCache();
     const start = new Date().getTime();
     cp.execSync(`${TITAN_BIN} run build${concurrency}`, DEFAULT_EXEC_OPTS);
     const end = new Date().getTime();

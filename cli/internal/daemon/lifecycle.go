@@ -98,7 +98,7 @@ func (l *lifecycle) logError(err error) {
 }
 
 func (l *lifecycle) ensureStarted(ctx context.Context) error {
-	client, err := GetClient(ctx, l.base.RepoRoot, l.base.Logger, l.base.TurboVersion, ClientOpts{})
+	client, err := GetClient(ctx, l.base.RepoRoot, l.base.Logger, l.base.TitanVersion, ClientOpts{})
 	if err != nil {
 		return err
 	}
@@ -109,7 +109,7 @@ func (l *lifecycle) ensureStarted(ctx context.Context) error {
 }
 
 func (l *lifecycle) ensureStopped(ctx context.Context) error {
-	client, err := GetClient(ctx, l.base.RepoRoot, l.base.Logger, l.base.TurboVersion, ClientOpts{
+	client, err := GetClient(ctx, l.base.RepoRoot, l.base.Logger, l.base.TitanVersion, ClientOpts{
 		// If the daemon is not running, don't start it, since we're trying to stop it
 		DontStart: true,
 	})

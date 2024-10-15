@@ -6,7 +6,7 @@ const ruleTester = new RuleTester({
   parserOptions: { ecmaVersion: 2020 },
 });
 
-const getTestTurboConfig = () => {
+const getTestTitanConfig = () => {
   return {
     $schema: "./docs/public/schema.json",
     globalEnv: ["NEW_STYLE_GLOBAL_ENV_KEY", "$NEW_STYLE_GLOBAL_ENV_KEY"],
@@ -37,52 +37,52 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       code: `
         const { TASK_ENV_KEY, ANOTHER_ENV_KEY } = process.env;
       `,
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: `
         const { NEW_STYLE_ENV_KEY, TASK_ENV_KEY } = process.env;
       `,
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: `
         const { NEW_STYLE_GLOBAL_ENV_KEY, TASK_ENV_KEY } = process.env;
       `,
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: `
         const val = process.env["$NEW_STYLE_GLOBAL_ENV_KEY"];
       `,
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: `
         const { TASK_ENV_KEY, ANOTHER_ENV_KEY } = process.env;
       `,
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: `
         const x = process.env.GLOBAL_ENV_KEY;
         const { TASK_ENV_KEY, GLOBAL_ENV_KEY: renamedX } = process.env;
       `,
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: "var x = process.env.GLOBAL_ENV_KEY;",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: "let x = process.env.TASK_ENV_KEY;",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: "const x = process.env.ANOTHER_KEY_VALUE;",
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ANOTHER_KEY_[A-Z]+$"],
         },
       ],
@@ -94,7 +94,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ENV_VAR_[A-Z]+$"],
         },
       ],
@@ -106,7 +106,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ENV_VAR_O[A-Z]+$", "ENV_VAR_TWO"],
         },
       ],
@@ -118,7 +118,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ENV_VAR_[A-Z]+$"],
         },
       ],
@@ -131,7 +131,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ENV_VAR_[A-Z]+$"],
         },
       ],
@@ -144,7 +144,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ENV_VAR_[A-Z]+$"],
         },
       ],
@@ -157,7 +157,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ENV_VAR_[A-Z]+$"],
         },
       ],
@@ -170,34 +170,34 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ENV_VAR_[A-Z]+$"],
         },
       ],
     },
     {
       code: "const getEnv = (key) => process.env[key];",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: "function getEnv(key) { return process.env[key]; }",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
     {
       code: "for (let x of ['ONE', 'TWO', 'THREE']) { console.log(process.env[x]); }",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
     },
   ],
 
   invalid: [
     {
       code: "let { X } = process.env;",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
       errors: [{ message: "$X is not listed as a dependency in titan.json" }],
     },
     {
       code: "const { X, Y, Z } = process.env;",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
       errors: [
         { message: "$X is not listed as a dependency in titan.json" },
         { message: "$Y is not listed as a dependency in titan.json" },
@@ -206,7 +206,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
     },
     {
       code: "const { X, Y: NewName, Z } = process.env;",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
       errors: [
         { message: "$X is not listed as a dependency in titan.json" },
         { message: "$Y is not listed as a dependency in titan.json" },
@@ -215,7 +215,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
     },
     {
       code: "var x = process.env.NOT_THERE;",
-      options: [{ titanConfig: getTestTurboConfig() }],
+      options: [{ titanConfig: getTestTitanConfig() }],
       errors: [
         { message: "$NOT_THERE is not listed as a dependency in titan.json" },
       ],
@@ -224,7 +224,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       code: "var x = process.env.KEY;",
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
           allowList: ["^ANOTHER_KEY_[A-Z]+$"],
         },
       ],
@@ -237,7 +237,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
         },
       ],
       errors: [
@@ -261,7 +261,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
         },
       ],
       errors: [
@@ -287,7 +287,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
         },
       ],
       errors: [
@@ -313,7 +313,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
         },
       ],
       errors: [
@@ -339,7 +339,7 @@ ruleTester.run(RULES.noUndeclaredEnvVars, rule, {
       `,
       options: [
         {
-          titanConfig: getTestTurboConfig(),
+          titanConfig: getTestTitanConfig(),
         },
       ],
       errors: [
