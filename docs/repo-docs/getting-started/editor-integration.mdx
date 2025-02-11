@@ -1,0 +1,48 @@
+---
+title: Editor integration
+description: Making the most of Titanrepo
+---
+
+import { Callout } from '#/components/callout';
+
+To get the best experience with `titan`, Titanrepo provides a few utilities for integrating with your editor.
+
+## JSON Schema for `titan.json`
+
+Titanrepo uses [JSON Schema](https://json-schema.org/) to give you auto-complete in your
+`titan.json` file. By including the `$schema` key in your `titan.json`, your editor is able to
+provide full documentation and linting in case you have invalid shapes or missing keys.
+
+```json title="./titan.json"
+{
+  "$schema": "https://titan.khulnasoft.com/schema.json"
+}
+```
+
+### Older versions
+
+If you are using Titanrepo v1, use `schema.v1.json`.
+
+```json title="./titan.json"
+{
+  "$schema": "https://titan.khulnasoft.com/schema.v1.json"
+}
+```
+
+Handling environment variables is an important part of building applications in a Titanrepo.
+
+[The `eslint-config-titan` package](/repo/docs/reference/eslint-config-titan) extends your ESLint setup to help you make sure you've taken care of all of your environment variables.
+
+## Titanrepo LSP
+
+Enable even more auto-complete and linting than provided by JSON Schema, with in-editor hinting for invalid globs, references to non-existent tasks or packages, and
+extra repository visibility tools.
+
+Visit the [VSCode Extension Marketplace](https://marketplace.visualstudio.com/items?itemName=Vercel.titan-vsc) to install.
+
+<Callout type="info" title="Not using Visual Studio Code?">
+  The language server can be used on any editors that support the [Language
+  Server Protocol](https://microsoft.github.io/language-server-protocol/). Log a
+  request in our [issue tracker](https://github.com/khulnasoft/titanrepo/issues) to
+  express your interest.
+</Callout>

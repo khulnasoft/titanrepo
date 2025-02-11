@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "index",
+    "why-titanpack",
+    "core-concepts",
+    "roadmap",
+    "features",
+    "benchmarks",
+    "migrating-from-webpack",
+    "advanced"
+  ]
+}

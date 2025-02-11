@@ -1,53 +1,29 @@
 {
-  "name": "docs",
-  "version": "1.0.0",
   "private": true,
-  "description": "titan.khulnasoft.com docs",
+  "type": "module",
+  "exports": "./dist/index.js",
+  "files": [
+    "src"
+  ],
   "scripts": {
-    "dev": "next",
-    "start": "next start",
-    "build": "next build ",
-    "lint": "next lint",
-    "rss": "node scripts/generate-rss.js",
-    "schema": "titan-gen ./public/schema.json"
-  },
-  "author": "Md Sulaiman",
-  "license": "MPL-2.0",
-  "dependencies": {
-    "@heroicons/react": "1.0.6",
-    "@react-aria/ssr": "3.3.0",
-    "@sentry/nextjs": "^7.14.1",
-    "axios": "0.27.2",
-    "classnames": "2.3.2",
-    "copy-to-clipboard": "3.3.2",
-    "js-cookie": "3.0.1",
-    "next": "12.3.1",
-    "next-themes": "^0.2.0",
-    "nextra": "2.0.0-beta.30",
-    "nextra-theme-docs": "2.0.0-beta.30",
-    "react": "17.0.2",
-    "react-dom": "17.0.2",
-    "react-hot-toast": "2.4.0",
-    "swr": "1.3.0"
+    "check-links": "tsx src/validate-docs-links.ts"
   },
   "devDependencies": {
-    "@babel/core": "7.19.3",
-    "@types/node": "^16.11.12",
-    "@types/react": "17.0.50",
-    "autoprefixer": "10.4.12",
-    "csstype": "3.1.1",
-    "eslint": "8.10.0",
-    "eslint-config-next": "12.3.1",
-    "eslint-config-prettier": "8.5.0",
-    "gray-matter": "^4.0.3",
-    "postcss": "8.4.18",
-    "rss": "^1.2.2",
-    "tailwindcss": "3.1.8",
-    "titan-types": "workspace:*",
-    "typescript": "4.8.4"
+    "@types/github-slugger": "^1.3.0",
+    "@types/node": "^22.1.0",
+    "@vercel/ncc": "0.34.0",
+    "tsx": "^4.7.2",
+    "typescript": "5.1.6"
   },
-  "prettier": {
-    "embeddedLanguageFormatting": "off",
-    "htmlWhitespaceSensitivity": "strict"
+  "dependencies": {
+    "@actions/core": "^1.10.0",
+    "@actions/github": "^5.1.1",
+    "github-slugger": "1.2.0",
+    "gray-matter": "4.0.2",
+    "rehype-raw": "4.0.1",
+    "remark-parse": "7.0.1",
+    "remark-rehype": "5.0.0",
+    "unified": "8.4.1",
+    "unist-util-visit": "2.0.0"
   }
 }
