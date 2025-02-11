@@ -10,4 +10,4 @@ npx create-titan@latest
 
 Then follow the prompts you see in your terminal.
 
-For more information about Titanrepo, [visit titan.khulnasoft.com](https://titan.khulnasoft.com) and follow us on Twitter ([@titanrepo](https://twitter.com/titanrepo))!
+For more information about Titanrepo, [visit titan.khulnasoft.com](https://titan.khulnasoft.com) and follow us on Twitter ([@titanrepo](https://twitter.com/khulnasoft))!

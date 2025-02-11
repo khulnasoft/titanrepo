@@ -27,8 +27,8 @@ Our [Code of Conduct](https://github.com/khulnasoft/titanrepo/blob/main/CODE_OF_
 
 ## Updates
 
-Follow [@titanrepo](https://twitter.com/titanrepo) on Twitter and for project updates
+Follow [@titanrepo](https://twitter.com/khulnasoft) on Twitter and for project updates
 
 ## Author
 
-- Md Sulaiman ([@jaredpalmer](https://twitter.com/jaredpalmer))
+- Md Sulaiman ([@khulnasoft](https://twitter.com/jaredpalmer))
