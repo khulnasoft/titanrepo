@@ -52,6 +52,9 @@
   "features": {
     "docker-in-docker": "latest",
     "git": "latest",
-    "github-cli": "latest"
+    "github-cli": "latest",
+    "ghcr.io/devcontainers/features/go:1": {
+      "version": "latest"
+    }
   }
 }
