@@ -278,7 +278,7 @@ export default function Home() {
               <Mention>@titanrepo</Mention>. ♥️⚡️
               <br />
               So glad it&apos;s open source now—congrats to{" "}
-              <Mention>@jaredpalmer</Mention> and <Mention>@khulnasoft</Mention>{" "}
+              <Mention>@khulnasoft</Mention> and <Mention>@khulnasoft</Mention>{" "}
               on the release!
             </Tweet>
           </div>
@@ -291,7 +291,7 @@ export default function Home() {
               avatar={ollermi}
             >
               It&apos;s been a joy to use <Mention>@titanrepo</Mention>.{" "}
-              <Mention>@jaredpalmer</Mention> is building something truly
+              <Mention>@khulnasoft</Mention> is building something truly
               wonderful for the JS community
             </Tweet>
             <Tweet
@@ -302,7 +302,7 @@ export default function Home() {
               avatar={elad}
             >
               If you build for web, leave everything and go see what{" "}
-              <Mention>@jaredpalmer</Mention> is doing with{" "}
+              <Mention>@khulnasoft</Mention> is doing with{" "}
               <Mention>@titanrepo</Mention>. One of the most exciting pieces of
               tech lately! The hype is real
             </Tweet>
