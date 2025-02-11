@@ -1,0 +1,35 @@
+[package]
+name = "titanrepo-auth"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+
+[lints]
+workspace = true
+
+[dependencies]
+anyhow = { workspace = true, features = ["backtrace"] }
+async-trait.workspace = true
+axum-server = { workspace = true }
+axum.workspace = true
+chrono.workspace = true
+hostname = "0.3.1"
+lazy_static.workspace = true
+reqwest.workspace = true
+serde = { workspace = true, features = ["derive"] }
+serde_json = { workspace = true }
+tempfile = { workspace = true }
+thiserror = "1.0.38"
+tokio.workspace = true
+tracing.workspace = true
+titanpath.workspace = true
+titanrepo-api-client = { workspace = true }
+titanrepo-dirs = { version = "0.1.0", path = "../titanrepo-dirs" }
+titanrepo-ui.workspace = true
+titanrepo-khulnasoft-api = { workspace = true }
+titanrepo-khulnasoft-api-mock = { workspace = true }
+url = { workspace = true }
+webbrowser = { workspace = true }
+
+[dev-dependencies]
+port_scanner = { workspace = true }

@@ -1,7 +1,12 @@
 packages:
-  - "docs"
+  - ".github/actions/*"
   - "cli"
+  - "docs"
   - "packages/*"
-  - "benchmark"
+  - "titanrepo-tests/*"
   # Intentionally exclude the `npm` `titan` package from the workspaces.
   - "!packages/titan"
+  - "shim/*/js"
+  - examples
+  # Exclude the non-monorepo example as it should be treated as independent of this repo
+  - "!examples/non-monorepo"
