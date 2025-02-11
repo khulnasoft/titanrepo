@@ -16,28 +16,30 @@
   "runArgs": [ "--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined" ],
 
   // Set *default* container specific settings.json values on container create.
-  "settings": {
-    "go.toolsManagement.checkForUpdates": "local",
-    "go.useLanguageServer": true,
-    "go.gopath": "/go"
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "go.toolsManagement.checkForUpdates": "local",
+        "go.useLanguageServer": true,
+        "go.gopath": "/go"
+      },
+      "extensions": [
+        "bradlc.vscode-tailwindcss",
+        "christian-kohler.npm-intellisense",
+        "dbaeumer.vscode-eslint",
+        "eamodio.gitlens",
+        "EditorConfig.EditorConfig",
+        "esbenp.prettier-vscode",
+        "github.copilot",
+        "github.vscode-pull-request-github",
+        "golang.go",
+        "heybourn.headwind",
+        "silvenon.mdx",
+        "windmilleng.vscode-go-autotest",
+        "yzhang.markdown-all-in-one"
+      ]
+    }
   },
-
-  // Add the IDs of extensions you want installed when the container is created.
-  "extensions": [
-    "bradlc.vscode-tailwindcss",
-    "christian-kohler.npm-intellisense",
-    "dbaeumer.vscode-eslint",
-    "eamodio.gitlens",
-    "EditorConfig.EditorConfig",
-    "esbenp.prettier-vscode",
-    "github.copilot",
-    "github.vscode-pull-request-github",
-    "golang.go",
-    "heybourn.headwind",
-    "silvenon.mdx",
-    "windmilleng.vscode-go-autotest",
-    "yzhang.markdown-all-in-one"
-  ],
 
   // Use 'forwardPorts' to make a list of ports inside the container available locally.
   // "forwardPorts": [],

@@ -19,8 +19,8 @@
       "type": "go",
       "request": "launch",
       "mode": "debug",
-      "program": "${workspaceRoot}/cli/cmd/titan",
-      "cwd": "${workspaceRoot}/examples/basic",
+      "program": "${workspaceFolder}/cli/cmd/titan",
+      "cwd": "${workspaceFolder}/examples/basic",
       "args": ["daemon"]
     },
     {
@@ -28,8 +28,8 @@
       "type": "go",
       "request": "launch",
       "mode": "debug",
-      "program": "${workspaceRoot}/cli/cmd/titan",
-      "cwd": "${workspaceRoot}/benchmark/large-monorepo",
+      "program": "${workspaceFolder}/cli/cmd/titan",
+      "cwd": "${workspaceFolder}/benchmark/large-monorepo",
       "args": ["daemon"]
     },
     {
@@ -82,8 +82,8 @@
       "type": "go",
       "request": "launch",
       "mode": "debug",
-      "program": "${workspaceRoot}/cli/cmd/titan",
-      "cwd": "${workspaceRoot}/examples/kitchen-sink",
+      "program": "${workspaceFolder}/cli/cmd/titan",
+      "cwd": "${workspaceFolder}/examples/kitchen-sink",
       "args": ["run", "build", "-vv"]
     },
     {
@@ -100,8 +100,8 @@
       "type": "go",
       "request": "launch",
       "mode": "debug",
-      "program": "${workspaceRoot}/cli/cmd/titan",
-      "cwd": "${workspaceRoot}",
+      "program": "${workspaceFolder}/cli/cmd/titan",
+      "cwd": "${workspaceFolder}",
       "args": ["run", "build"]
     },
     {
@@ -118,8 +118,8 @@
       "type": "go",
       "request": "launch",
       "mode": "debug",
-      "program": "${workspaceRoot}/cli/cmd/titan",
-      "cwd": "${workspaceRoot}/cli/testbed",
+      "program": "${workspaceFolder}/cli/cmd/titan",
+      "cwd": "${workspaceFolder}/cli/testbed",
       "args": ["run", "build", "--single-package"]
     }
   ]

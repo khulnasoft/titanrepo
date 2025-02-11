@@ -5,7 +5,6 @@
     "typescript",
     "typescriptreact"
   ],
-  "eslint.packageManager": "yarn",
   "debug.javascript.unmapMissingSources": true,
   "gopls": {
     "experimentalWorkspaceModule": true
